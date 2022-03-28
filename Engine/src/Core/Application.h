@@ -16,5 +16,3 @@ namespace Workbench
 	// Will be defined through Sandbox
 	Application* CreateApplication();
 }
-
-
