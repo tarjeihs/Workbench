@@ -1,29 +1,31 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="src">
-      <UniqueIdentifier>{a976db69-4563-4dd9-aadc-750a991f3825}</UniqueIdentifier>
+    <Filter Include="Core">
+      <UniqueIdentifier>{2EB4837C-1AEB-840D-C3D7-6A10AFED000F}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Core\Application.h">
-      <Filter>src</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Core\Core.h">
-      <Filter>src</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Core\Entrypoint.h">
-      <Filter>src</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Workbench.h">
-      <Filter>src</Filter>
+    <ClInclude Include="src\Core\Log.h">
+      <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Core\Log.h" />
+    <ClInclude Include="src\Workbench.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Core\Application.cpp">
-      <Filter>src</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\Core\Log.cpp" />
+    <ClCompile Include="src\Core\Log.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

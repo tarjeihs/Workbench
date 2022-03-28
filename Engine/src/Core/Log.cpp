@@ -11,6 +11,7 @@ namespace Workbench
 	void Log::Init()
 	{
 		spdlog::set_pattern("%^[%T] %n: %v%$");
+		
 		s_EngineLogger = spdlog::stderr_color_mt("ENGINE");
 		s_ClientLogger = spdlog::stderr_color_mt("CLIENT");
 	
