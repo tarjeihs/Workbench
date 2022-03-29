@@ -19,6 +19,9 @@ workspace "Workbench"
         targetdir ("bin/" .. outputdir .. "/%{prj.name}")
         objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+        pchheader "wbpch.h"
+        pchsource "Engine/src/wbpch.cpp"
+
         files 
         { 
             "%{prj.name}/src/**.h", 
@@ -27,7 +30,8 @@ workspace "Workbench"
 
         includedirs 
         {
-            "%{prj.name}/vendor/spdlog/include"
+            "%{prj.name}/vendor/spdlog/include",
+            "%{prj.name}/src"
         }
 
         filter "system:windows"

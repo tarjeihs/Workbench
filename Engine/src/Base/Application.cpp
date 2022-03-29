@@ -1,3 +1,5 @@
+#include "wbpch.h"
+
 #include "Application.h"
 
 namespace Workbench

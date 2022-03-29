@@ -6,26 +6,30 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Core\Application.h">
+    <ClInclude Include="src\Base\Application.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Core\Core.h">
+    <ClInclude Include="src\Base\Core.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Core\Entrypoint.h">
+    <ClInclude Include="src\Base\Entrypoint.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Core\Log.h">
+    <ClInclude Include="src\Base\Log.h">
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Workbench.h" />
+    <ClInclude Include="src\wbpch.h" />
+    <ClInclude Include="src\Base\Event\Event.h" />
+    <ClInclude Include="src\Base\Event\KeyEvent.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Core\Application.cpp">
+    <ClCompile Include="src\Base\Application.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\Core\Log.cpp">
+    <ClCompile Include="src\Base\Log.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="src\wbpch.cpp" />
   </ItemGroup>
 </Project>
