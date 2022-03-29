@@ -1,6 +1,6 @@
 #pragma once
 
-#include "wbpch.h"
+#include <sstream>
 
 #include "Event.h"
 

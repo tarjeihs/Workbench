@@ -2,6 +2,9 @@
 
 #include "Application.h"
 
+#include "Event/KeyEvent.h"
+#include "Log.h"
+
 namespace Workbench
 {
 	Application::Application()
@@ -16,7 +19,7 @@ namespace Workbench
 	{
 		while (true) 
 		{
-		
+			
 		}
 	}
 }

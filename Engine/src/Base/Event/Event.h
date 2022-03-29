@@ -1,6 +1,6 @@
 #pragma once
 
-#include "wbpch.h"
+#include <functional>
 
 #include "Base/Core.h"
 
@@ -31,10 +31,11 @@ namespace Workbench
 
 #define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return category; }
 
-	class WORKBENCH_API Event
+	class Event
 	{
-		friend class EventDispatcher;
 	public:
+		virtual ~Event() = default;
+
 		virtual EventType GetEventType() const = 0;
 		virtual int GetCategoryFlags() const = 0;
 		virtual const char* GetName() const = 0;
@@ -69,6 +70,7 @@ namespace Workbench
 	private:
 		Event& m_Event;
 	};
+
 
 	inline std::ostream& operator<<(std::ostream& os, const Event& event)
 	{

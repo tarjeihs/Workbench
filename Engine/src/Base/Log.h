@@ -1,7 +1,14 @@
 #pragma once
 
 #include "Core.h"
+
 #include "spdlog/spdlog.h"
+
+// Ignores all warnings raised inside external header files
+#pragma warning(push, 0)
+#include <spdlog/spdlog.h>
+#include <spdlog/fmt/ostr.h>
+#pragma warning(pop)
 
 namespace Workbench
 {
