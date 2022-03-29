@@ -1,34 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Core">
-      <UniqueIdentifier>{2EB4837C-1AEB-840D-C3D7-6A10AFED000F}</UniqueIdentifier>
+    <Filter Include="Base">
+      <UniqueIdentifier>{60EC827C-4C23-840D-F50F-6A10E125000F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\Event">
+      <UniqueIdentifier>{B135A056-9DED-E1A3-06F5-BAFFF2CB7C94}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Base\Application.h">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="src\Base\Core.h">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="src\Base\Entrypoint.h">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Base\Event\ApplicationEvent.h">
+      <Filter>Base\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Base\Event\Event.h">
+      <Filter>Base\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Base\Event\KeyEvent.h">
+      <Filter>Base\Event</Filter>
     </ClInclude>
     <ClInclude Include="src\Base\Log.h">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="src\Workbench.h" />
     <ClInclude Include="src\wbpch.h" />
-    <ClInclude Include="src\Base\Event\Event.h" />
-    <ClInclude Include="src\Base\Event\KeyEvent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Base\Application.cpp">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="src\Base\Log.cpp">
-      <Filter>Core</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="src\wbpch.cpp" />
   </ItemGroup>

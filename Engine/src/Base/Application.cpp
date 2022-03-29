@@ -17,6 +17,9 @@ namespace Workbench
 
 	void Application::Run()
 	{
+		KeyPressedEvent event(10, 10);
+		WB_INFO(event);
+
 		while (true) 
 		{
 			

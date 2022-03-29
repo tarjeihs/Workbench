@@ -11,6 +11,10 @@ workspace "Workbench"
 
     outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+    IncludeDir = {}
+    IncludeDir["GLFW"] = "Engine/vendor/GLFW/include"
+    include "Engine/vendor/GLFW"
+
     project "Engine"
         location "Engine"
         kind "SharedLib"
@@ -31,7 +35,8 @@ workspace "Workbench"
         includedirs 
         {
             "%{prj.name}/vendor/spdlog/include",
-            "%{prj.name}/src"
+            "%{prj.name}/src",
+            "%{IncludeDir.GLFW}"
         }
 
         filter "system:windows"
