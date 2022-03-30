@@ -13,7 +13,7 @@ namespace Workbench
 		WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved,
 		AppUpdate, AppLateUpdate, AppRender,
 		KeyPressed, KeyReleased,
-		MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
+		MouseButtonPressed, MouseButtonReleased, MouseMove, MouseScroll
 	};
 
 	enum EventCategory
@@ -41,13 +41,13 @@ namespace Workbench
 		virtual int GetCategoryFlags() const = 0;
 		virtual const char* GetName() const = 0;
 		virtual std::string ToString() const { return GetName(); }
+		
+		bool IsHandled = false;
 	
 		inline bool IsInCategory(EventCategory category)
 		{
 			return GetCategoryFlags() & category;
 		}
-	protected:
-		bool m_Handled = false;
 	};
 
 	class EventDispatcher
@@ -63,7 +63,7 @@ namespace Workbench
 		{
 			if (m_Event.GetEventType() == T::GetStaticType())
 			{
-				m_Event.m_Handled = func(*(T*)&m_Event);
+				m_Event.IsHandled = func(*(T*)&m_Event);
 				return true;
 			}
 			return false;

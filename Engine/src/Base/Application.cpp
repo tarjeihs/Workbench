@@ -1,7 +1,6 @@
 #include "wbpch.h"
 
 #include "Application.h"
-#include <gl/GL.h>
 
 namespace Workbench
 {
@@ -18,18 +17,21 @@ namespace Workbench
 
 	void Application::OnEvent(Event& event)
 	{
-		//EventDispatcher dispatcher(event);
-		//dispatcher.Dispatch()
+		EventDispatcher dispatcher(event);
+		dispatcher.Dispatch<WindowCloseEvent>(WB_BIND_EVENT_FN(OnWindowClose));
 
-		WB_ENGINE_INFO("{0}", event);
+		WB_ENGINE_TRACE("{0}", event);
+	}
+
+	bool Application::OnWindowClose(WindowCloseEvent& event)
+	{
+		return m_Running = false;
 	}
 
 	void Application::Run()
 	{
 		while (m_Running) 
 		{
-			glClearColor(1.0f, 0.0f, 1.0f, 1.0f);
-			glClear(GL_COLOR_BUFFER_BIT);
 			m_Window->OnUpdate();
 		}
 	}

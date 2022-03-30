@@ -50,6 +50,7 @@
     </ClInclude>
     <ClInclude Include="src\Workbench.h" />
     <ClInclude Include="src\wbpch.h" />
+    <ClInclude Include="src\Base\Event\MouseEvent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Base\Application.cpp">

@@ -1,9 +1,6 @@
 #include "wbpch.h"
 #include "WindowsWindow.h"
 
-#include "Base/Event/KeyEvent.h"
-#include "Base/Event/ApplicationEvent.h"
-
 namespace Workbench
 {
 	static bool s_GLFWInitialized = false;
@@ -67,24 +64,34 @@ namespace Workbench
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 			switch (action)
 			{
-				case GLFW_PRESS:
-				{
-					KeyPressedEvent event(keyCode, 0);
-					data.EventCallback(event);
-					break;
-				}
-				case GLFW_REPEAT:
-				{
-					KeyPressedEvent event(keyCode, 1);
-					data.EventCallback(event);
-					break;
-				}
-				case GLFW_RELEASE:
-				{
-					KeyReleasedEvent event(keyCode);
-					data.EventCallback(event);
-					break;
-				}
+				case GLFW_PRESS: { KeyPressedEvent event(keyCode, 0); data.EventCallback(event); break; }
+				case GLFW_REPEAT: { KeyPressedEvent event(keyCode, 1); data.EventCallback(event); break; }
+				case GLFW_RELEASE: { KeyReleasedEvent event(keyCode); data.EventCallback(event); break; }
+			}
+		});
+
+		glfwSetCursorPosCallback(m_Window, [](GLFWwindow* window, double mouseX, double mouseY)
+		{
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+			MouseMoveEvent event((float)mouseX, (float)mouseY);
+			data.EventCallback(event);
+		});
+
+		glfwSetScrollCallback(m_Window, [](GLFWwindow* window, double xOffset, double yOffset)
+		{
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+			MouseScrollEvent event((float)xOffset, (float)yOffset);
+			data.EventCallback(event);
+		});
+
+		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int keyCode, int action, int mods) 
+		{
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+			switch (action)
+			{
+				case GLFW_PRESS: { MouseButtonPressedEvent event(keyCode, 0); data.EventCallback(event); break; }
+				case GLFW_REPEAT: { MouseButtonPressedEvent event(keyCode, 1); data.EventCallback(event); break; } // Does not work for some reason
+				case GLFW_RELEASE: { MouseButtonReleasedEvent event(keyCode); data.EventCallback(event); break; }
 			}
 		});
 	}
