@@ -51,6 +51,8 @@
     <ClInclude Include="src\Workbench.h" />
     <ClInclude Include="src\wbpch.h" />
     <ClInclude Include="src\Base\Event\MouseEvent.h" />
+    <ClInclude Include="src\Base\Layer.h" />
+    <ClInclude Include="src\Base\LayerStack.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Base\Application.cpp">
@@ -63,5 +65,7 @@
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\wbpch.cpp" />
+    <ClCompile Include="src\Base\Layer.cpp" />
+    <ClCompile Include="src\Base\LayerStack.cpp" />
   </ItemGroup>
 </Project>
