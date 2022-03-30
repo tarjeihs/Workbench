@@ -5,7 +5,7 @@ class SandboxLayer : public Workbench::Layer
 {
 public:
 	SandboxLayer()
-		: Layer("Sandbox") 
+		: Layer("Sandbox")
 	{
 	}
 

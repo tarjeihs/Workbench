@@ -39,6 +39,15 @@
     <ClInclude Include="src\Base\Event\KeyEvent.h">
       <Filter>Base\Event</Filter>
     </ClInclude>
+    <ClInclude Include="src\Base\Event\MouseEvent.h">
+      <Filter>Base\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Base\Layer.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Base\LayerStack.h">
+      <Filter>Base</Filter>
+    </ClInclude>
     <ClInclude Include="src\Base\Log.h">
       <Filter>Base</Filter>
     </ClInclude>
@@ -50,12 +59,15 @@
     </ClInclude>
     <ClInclude Include="src\Workbench.h" />
     <ClInclude Include="src\wbpch.h" />
-    <ClInclude Include="src\Base\Event\MouseEvent.h" />
-    <ClInclude Include="src\Base\Layer.h" />
-    <ClInclude Include="src\Base\LayerStack.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Base\Application.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Base\Layer.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Base\LayerStack.cpp">
       <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="src\Base\Log.cpp">
@@ -65,7 +77,5 @@
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\wbpch.cpp" />
-    <ClCompile Include="src\Base\Layer.cpp" />
-    <ClCompile Include="src\Base\LayerStack.cpp" />
   </ItemGroup>
 </Project>

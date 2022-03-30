@@ -2,6 +2,8 @@
 
 #include "Application.h"
 
+#include <glad/glad.h>
+
 namespace Workbench
 {
 	Application::Application()

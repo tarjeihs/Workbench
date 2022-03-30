@@ -4,6 +4,7 @@
 namespace Workbench
 {
 	static bool s_GLFWInitialized = false;
+	static bool s_GLADInitialized = false;
 
 	WindowsWindow::WindowsWindow(const WindowProperties& properties)
 	{
@@ -40,6 +41,14 @@ namespace Workbench
 		glfwMakeContextCurrent(m_Window);
 		glfwSetWindowUserPointer(m_Window, &m_WindowData);
 		SetVSync(true);
+
+		if (!s_GLADInitialized)
+		{
+			int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+			WB_ENGINE_ASSERT(status, "Failed to initialize GLAD library.");
+
+			s_GLADInitialized = true;
+		}
 
 		// GLFW callbacks
 		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height)
