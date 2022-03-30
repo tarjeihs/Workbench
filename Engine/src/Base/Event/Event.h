@@ -1,9 +1,9 @@
 #pragma once
 
-#include <functional>
-#include <sstream>
+#include "wbpch.h"
 
 #include "Base/Core.h"
+#include "Base/Log.h"
 
 namespace Workbench
 {

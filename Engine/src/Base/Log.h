@@ -30,7 +30,7 @@ namespace Workbench
 #define WB_ENGINE_WARN(...)  ::Workbench::Log::GetEngineLogger()->warn(__VA_ARGS__)
 #define WB_ENGINE_ERROR(...) ::Workbench::Log::GetEngineLogger()->error(__VA_ARGS__)
 
-#define WB_TRACE(...) ::Workbench::Log::GetClientLogger()->trace(__VA_ARGS__)
-#define WB_INFO(...)  ::Workbench::Log::GetClientLogger()->info(__VA_ARGS__)
-#define WB_WARN(...)  ::Workbench::Log::GetClientLogger()->warn(__VA_ARGS__)
-#define WB_ERROR(...) ::Workbench::Log::GetClientLogger()->error(__VA_ARGS__)
+#define WB_CLIENT_TRACE(...) ::Workbench::Log::GetClientLogger()->trace(__VA_ARGS__)
+#define WB_CLIENT_INFO(...)  ::Workbench::Log::GetClientLogger()->info(__VA_ARGS__)
+#define WB_CLIENT_WARN(...)  ::Workbench::Log::GetClientLogger()->warn(__VA_ARGS__)
+#define WB_CLIENT_ERROR(...) ::Workbench::Log::GetClientLogger()->error(__VA_ARGS__)

@@ -9,6 +9,11 @@ workspace "Workbench"
         "Dist" 
     }
 
+    flags 
+    {
+        "MultiProcessorCompile"
+    }
+
     outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
     IncludeDir = {}
@@ -19,9 +24,10 @@ workspace "Workbench"
         location "Engine"
         kind "SharedLib"
         language "C++"
+        staticruntime "On"
 
-        targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-        objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+        targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
+        objdir ("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
 
         pchheader "wbpch.h"
         pchsource "Engine/src/wbpch.cpp"
@@ -32,16 +38,27 @@ workspace "Workbench"
             "%{prj.name}/src/**.cpp" 
         }
 
+        defines 
+        {
+            "_CRT_SECURE_NO_WARNINGS",
+            "GLFW_INCLUDE_NONE"
+        }
+
         includedirs 
         {
-            "%{prj.name}/vendor/spdlog/include",
             "%{prj.name}/src",
+            "%{prj.name}/vendor/spdlog/include",
             "%{IncludeDir.GLFW}"
+        }
+
+        links 
+        {
+            "opengl32.lib",
+            "GLFW"
         }
 
         filter "system:windows"
             cppdialect "C++17"
-            staticruntime "On"
             systemversion "latest"
 
             defines 
@@ -57,20 +74,27 @@ workspace "Workbench"
 
         filter "configurations:Debug"
             defines "WB_DEBUG"
+            runtime "Debug"
+            buildoptions "/MDd"
             symbols "On"
         
         filter "configurations:Release"
             defines "WB_RELEASE"
+            runtime "Release"
+            buildoptions "/MD"
             optimize "On"
         
         filter "configurations:Dist"
             defines "WB_DIST"
+            runtime "Release"
+            buildoptions "/MD"
             optimize "On"
 
     project "Sandbox"
         location "Sandbox"
         kind "ConsoleApp"
         language "C++"
+        staticruntime "On"
 
         targetdir ("bin/" .. outputdir .. "/%{prj.name}")
         objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -104,12 +128,18 @@ workspace "Workbench"
 
         filter "configurations:Debug"
             defines "WB_DEBUG"
+            runtime "Debug"
+            buildoptions "/MDd"
             symbols "On"
     
         filter "configurations:Release"
             defines "WB_RELEASE"
+            runtime "Release"
+            buildoptions "/MD"
             optimize "On"
     
         filter "configurations:Dist"
             defines "WB_DIST"
+            runtime "Release"
+            buildoptions "/MD"
             optimize "On"

@@ -2,27 +2,23 @@
 
 #include "Application.h"
 
-#include "Event/KeyEvent.h"
-#include "Log.h"
-
 namespace Workbench
 {
 	Application::Application()
 	{
+		m_Window = std::unique_ptr<Workbench::Window>(Window::Create());
 	}
 
 	Application::~Application()
 	{
+
 	}
 
 	void Application::Run()
 	{
-		KeyPressedEvent event(10, 10);
-		WB_INFO(event);
-
-		while (true) 
+		while (m_Running) 
 		{
-			
+			m_Window->OnUpdate();
 		}
 	}
 }

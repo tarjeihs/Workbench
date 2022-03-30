@@ -12,6 +12,8 @@
 #include <unordered_map>
 #include <unordered_set>
 
+#include "Base/Base.h"
+
 #ifdef WB_PLATFORM_WINDOWS
 	#include <Windows.h>
 #endif
