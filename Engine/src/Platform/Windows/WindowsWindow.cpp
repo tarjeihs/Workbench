@@ -1,6 +1,9 @@
 #include "wbpch.h"
 #include "WindowsWindow.h"
 
+#include "Base/Event/KeyEvent.h"
+#include "Base/Event/ApplicationEvent.h"
+
 namespace Workbench
 {
 	static bool s_GLFWInitialized = false;
@@ -10,7 +13,7 @@ namespace Workbench
 		Init(properties);
 	}
 
-	WindowsWindow::~WindowsWindow() 
+	WindowsWindow::~WindowsWindow()
 	{
 		Shutdown();
 	}
@@ -40,6 +43,50 @@ namespace Workbench
 		glfwMakeContextCurrent(m_Window);
 		glfwSetWindowUserPointer(m_Window, &m_WindowData);
 		SetVSync(true);
+
+		// GLFW callbacks
+		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height)
+		{
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+
+			WindowResizeEvent event(width, height);
+			data.Width = width;
+			data.Height = height;
+			data.EventCallback(event);
+		});
+
+		glfwSetWindowCloseCallback(m_Window, [](GLFWwindow* window)
+		{
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+			WindowCloseEvent event;
+			data.EventCallback(event);
+		});
+
+		glfwSetKeyCallback(m_Window, [](GLFWwindow* window, int keyCode, int scanCode, int action, int modes)
+		{
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+			switch (action)
+			{
+				case GLFW_PRESS:
+				{
+					KeyPressedEvent event(keyCode, 0);
+					data.EventCallback(event);
+					break;
+				}
+				case GLFW_REPEAT:
+				{
+					KeyPressedEvent event(keyCode, 1);
+					data.EventCallback(event);
+					break;
+				}
+				case GLFW_RELEASE:
+				{
+					KeyReleasedEvent event(keyCode);
+					data.EventCallback(event);
+					break;
+				}
+			}
+		});
 	}
 
 	void WindowsWindow::Shutdown()

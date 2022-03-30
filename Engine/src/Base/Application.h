@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Core.h"
-#include "Event/Event.h"
 #include "Window.h"
 
 namespace Workbench
@@ -13,6 +12,8 @@ namespace Workbench
 		virtual ~Application();
 
 		void Run();
+
+		void OnEvent(Event& event);
 	private:
 		std::unique_ptr<Window> m_Window;
 		bool m_Running;

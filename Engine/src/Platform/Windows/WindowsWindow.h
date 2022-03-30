@@ -17,7 +17,7 @@ namespace Workbench
 		inline unsigned int GetWidth() const override { return m_WindowData.Width; }
 		inline unsigned int GetHeight() const override { return m_WindowData.Height; }
 
-		inline void SetEventCallback(const EventCallbackFn& callback) override { }
+		inline void SetEventCallback(const EventCallbackFn& callback) override { m_WindowData.EventCallback = callback; }
 		void SetVSync(bool enabled) override;
 		bool IsVSync() const override;
 	private:

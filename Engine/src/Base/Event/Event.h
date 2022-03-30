@@ -1,6 +1,6 @@
 #pragma once
 
-#include "wbpch.h"
+#include <functional>
 
 #include "Base/Core.h"
 #include "Base/Log.h"
