@@ -98,8 +98,7 @@ namespace Workbench
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 			switch (action)
 			{
-				case GLFW_PRESS: { MouseButtonPressedEvent event(keyCode, 0); data.EventCallback(event); break; }
-				case GLFW_REPEAT: { MouseButtonPressedEvent event(keyCode, 1); data.EventCallback(event); break; } // Does not work for some reason
+				case GLFW_PRESS: { MouseButtonPressedEvent event(keyCode); data.EventCallback(event); break; }
 				case GLFW_RELEASE: { MouseButtonReleasedEvent event(keyCode); data.EventCallback(event); break; }
 			}
 		});

@@ -11,7 +11,7 @@ public:
 
 	void OnUpdate() override
 	{
-		WB_CLIENT_INFO("SandboxLayer::OnUpdate");
+
 	}
 
 	void OnEvent(Workbench::Event& event) override

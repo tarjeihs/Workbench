@@ -7,21 +7,22 @@ namespace Workbench
 	class MouseMoveEvent : public Event
 	{
 	public:
-		MouseMoveEvent(const float x, const float y)
-			: m_MouseX(x), m_MouseY(y) {}
+		MouseMoveEvent(float mouseX, float mouseY)
+			: m_MouseX(mouseX), m_MouseY(mouseY) {}
 
-		float GetMouseX() const { return m_MouseX; }
-		float GetMouseY() const { return m_MouseY; }
+		inline float GetMouseX() const { return m_MouseX; }
+		inline float GetMouseY() const { return m_MouseY; }
 
+		// Purely for debugging purposes
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "MouseMoveEvent: " << m_MouseX << ", " << m_MouseY;
+			ss << "MouseMoveEvent: (" << m_MouseX << ", " << m_MouseY << ")";
 			return ss.str();
 		}
 
-		EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
 		EVENT_CLASS_TYPE(MouseMove)
+		EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
 	private:
 		float m_MouseX;
 		float m_MouseY;
@@ -30,65 +31,71 @@ namespace Workbench
 	class MouseScrollEvent : public Event
 	{
 	public:
-		MouseScrollEvent(const float xScrollOffset, const float yScrollOffset) 
+		MouseScrollEvent(float xScrollOffset, float yScrollOffset) 
 			: m_ScrollXOffset(xScrollOffset), m_ScrollYOffset(yScrollOffset) {}
 
-		float GetScrollXOffset() const { return m_ScrollXOffset; }
-		float GetScrollYOffset() const { return m_ScrollYOffset; }
-
-		std::string ToString() const override
-		{
-			std::stringstream ss;
-			ss << "MouseScrollEvent: " << m_ScrollXOffset << ", " << m_ScrollYOffset;
-			return ss.str();
-		}
-
-		EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
-		EVENT_CLASS_TYPE(MouseScroll)
-	private:
-		float m_ScrollXOffset;
-		float m_ScrollYOffset;
-	};
-
-	class MouseButtonPressedEvent : public Event
-	{
-	public:
-		MouseButtonPressedEvent(const int keyCode, const int repeatCount)
-			: m_KeyCode(keyCode), m_RepeatCount(repeatCount) {}
-
-		inline int GetRepeatCount() const { return m_RepeatCount; }
+		inline float GetScrollXOffset() const { return m_ScrollXOffset; }
+		inline float GetScrollYOffset() const { return m_ScrollYOffset; }
 
 		// Purely for debugging purposes
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "MouseButtonPressedEvent: " << m_KeyCode << " (" << m_RepeatCount << " repeats)";
+			ss << "MouseScrollEvent: (" << m_ScrollXOffset << ", " << m_ScrollYOffset << ")";
 			return ss.str();
 		}
 
-		EVENT_CLASS_CATEGORY(EventCategoryMouseButton | EventCategoryInput)
-		EVENT_CLASS_TYPE(MouseButtonPressed)
+		EVENT_CLASS_TYPE(MouseScroll)
+		EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
 	private:
-		int m_KeyCode;
-		int m_RepeatCount;
+		float m_ScrollXOffset;
+		float m_ScrollYOffset;
 	};
 
-	class MouseButtonReleasedEvent : public Event
+	class MouseButtonEvent : public Event
 	{
 	public:
-		MouseButtonReleasedEvent(const int keyCode)
-			: m_KeyCode(keyCode) {}
+		inline int GetMouseKeyCode() const { return m_MouseKeyCode; }
 
+		EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
+	protected:
+		MouseButtonEvent(int mouseKeyCode) 
+			: m_MouseKeyCode(mouseKeyCode) {}
+
+		int m_MouseKeyCode;
+	};
+
+	class MouseButtonPressedEvent : public MouseButtonEvent
+	{
+	public:
+		MouseButtonPressedEvent(int mouseKeyCode)
+			: MouseButtonEvent(mouseKeyCode) {}
+
+		// Purely for debugging purposes
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "MouseButtonReleasedEvent: " << m_KeyCode;
+			ss << "MouseButtonPressedEvent: " << m_MouseKeyCode;
 			return ss.str();
 		}
 
-		EVENT_CLASS_CATEGORY(EventCategoryMouseButton | EventCategoryInput)
-		EVENT_CLASS_TYPE(MouseButtonReleased)
-	private:
-		int m_KeyCode;
+		EVENT_CLASS_TYPE(MouseButtonPressed)
 	};
-}
+
+	class MouseButtonReleasedEvent : public MouseButtonEvent
+	{
+	public:
+		MouseButtonReleasedEvent(int mouseKeyCode) 
+			: MouseButtonEvent(mouseKeyCode) {}
+
+		// Purely for debugging purposes
+		std::string ToString() const override
+		{
+			std::stringstream ss;
+			ss << "MouseButtonReleasedEvent: " << m_MouseKeyCode;
+			return ss.str();
+		}
+
+		EVENT_CLASS_TYPE(MouseButtonReleased)
+	};
+} 
