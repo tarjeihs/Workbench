@@ -19,9 +19,11 @@ workspace "Workbench"
     IncludeDir = {}
     IncludeDir["GLFW"] = "Engine/vendor/GLFW/include"
     IncludeDir["Glad"] = "Engine/vendor/Glad/include"
+    IncludeDir["ImGui"] = "Engine/vendor/imgui"
     
     include "Engine/vendor/GLFW"
     include "Engine/vendor/Glad"
+    include "Engine/vendor/imgui"
 
     project "Engine"
         location "Engine"
@@ -52,14 +54,16 @@ workspace "Workbench"
             "%{prj.name}/src",
             "%{prj.name}/vendor/spdlog/include",
             "%{IncludeDir.GLFW}",
-            "%{IncludeDir.Glad}"
+            "%{IncludeDir.Glad}",
+            "%{IncludeDir.ImGui}"
         }
 
         links 
         {
-            "opengl32.lib",
             "Glad",
-            "GLFW"
+            "GLFW",
+            "ImGui",
+            "opengl32.lib"
         }
 
         filter "system:windows"
