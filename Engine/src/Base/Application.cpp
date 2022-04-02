@@ -1,9 +1,9 @@
 #include "wbpch.h"
-
 #include "Application.h"
 
 // Temporary!
 #include <glad/glad.h>
+#include "Input.h"
 
 namespace Workbench
 {
@@ -41,6 +41,9 @@ namespace Workbench
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			for (Layer* layer : m_LayerStack) { layer->OnUpdate(); }
+
+			auto [x, y] = Input::GetMousePosition();
+			WB_ENGINE_WARN("{0}, {1}", x, y);
 
 			m_Window->OnUpdate();
 		}

@@ -68,10 +68,10 @@ namespace Workbench
 		dispatcher.Dispatch<KeyReleasedEvent>(WB_BIND_EVENT_FN(ImGuiLayer::OnKeyReleasedEvent));
 		dispatcher.Dispatch<KeyTypeEvent>(WB_BIND_EVENT_FN(ImGuiLayer::OnKeyTypeEvent));
 
-        dispatcher.Dispatch<MouseMoveEvent>(WB_BIND_EVENT_FN(ImGuiLayer::OnMouseButtonMoveEvent));
-        dispatcher.Dispatch<MouseScrollEvent>(WB_BIND_EVENT_FN(ImGuiLayer::OnMouseButtonScrollEvent));
         dispatcher.Dispatch<MouseButtonPressedEvent>(WB_BIND_EVENT_FN(ImGuiLayer::OnMouseButtonPressedEvent));
         dispatcher.Dispatch<MouseButtonReleasedEvent>(WB_BIND_EVENT_FN(ImGuiLayer::OnMouseButtonReleasedEvent));
+		dispatcher.Dispatch<MouseMoveEvent>(WB_BIND_EVENT_FN(ImGuiLayer::OnMouseButtonMoveEvent));
+		dispatcher.Dispatch<MouseScrollEvent>(WB_BIND_EVENT_FN(ImGuiLayer::OnMouseButtonScrollEvent));
     }
 
     bool ImGuiLayer::OnWindowResizeEvent(WindowResizeEvent& event)
@@ -114,21 +114,6 @@ namespace Workbench
         return false;
     }
 
-    bool ImGuiLayer::OnMouseButtonMoveEvent(MouseMoveEvent& event)
-    {
-        ImGuiIO& io = ImGui::GetIO();
-        io.MousePos = ImVec2(event.GetMouseX(), event.GetMouseY());
-
-        return false;
-    }
-    bool ImGuiLayer::OnMouseButtonScrollEvent(MouseScrollEvent& event)
-    {
-		ImGuiIO& io = ImGui::GetIO();
-        io.MouseWheelH += event.GetScrollXOffset();
-        io.MouseWheel += event.GetScrollYOffset();
-
-        return false;
-    }
     bool ImGuiLayer::OnMouseButtonPressedEvent(MouseButtonPressedEvent& event)
     {
 		ImGuiIO& io = ImGui::GetIO();
@@ -136,10 +121,28 @@ namespace Workbench
 
         return false;
     }
+   
     bool ImGuiLayer::OnMouseButtonReleasedEvent(MouseButtonReleasedEvent& event)
 	{
 		ImGuiIO& io = ImGui::GetIO();
 		io.MouseDown[event.GetMouseKeyCode()] = false;
+
+        return false;
+    }
+
+    bool ImGuiLayer::OnMouseButtonMoveEvent(MouseMoveEvent& event)
+    {
+        ImGuiIO& io = ImGui::GetIO();
+        io.MousePos = ImVec2(event.GetMouseX(), event.GetMouseY());
+
+        return false;
+    }
+
+    bool ImGuiLayer::OnMouseButtonScrollEvent(MouseScrollEvent& event)
+    {
+		ImGuiIO& io = ImGui::GetIO();
+        io.MouseWheelH += event.GetScrollXOffset();
+        io.MouseWheel += event.GetScrollYOffset();
 
         return false;
     }

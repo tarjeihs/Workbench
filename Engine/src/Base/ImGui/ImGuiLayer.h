@@ -22,10 +22,10 @@ namespace Workbench
 		bool OnKeyReleasedEvent(KeyReleasedEvent& event);
 		bool OnKeyTypeEvent(KeyTypeEvent& event);
 
-		bool OnMouseButtonMoveEvent(MouseMoveEvent& event);
-		bool OnMouseButtonScrollEvent(MouseScrollEvent& event);
 		bool OnMouseButtonPressedEvent(MouseButtonPressedEvent& event);
 		bool OnMouseButtonReleasedEvent(MouseButtonReleasedEvent& event);
+		bool OnMouseButtonMoveEvent(MouseMoveEvent& event);
+		bool OnMouseButtonScrollEvent(MouseScrollEvent& event);
 
 		float m_Time = 0.0;
 	};

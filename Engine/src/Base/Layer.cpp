@@ -1,5 +1,4 @@
 #include "wbpch.h"
-
 #include "Layer.h"
 
 namespace Workbench

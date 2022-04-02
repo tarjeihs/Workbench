@@ -4,6 +4,59 @@
 
 namespace Workbench
 {
+	class MouseButtonEvent : public Event
+	{
+	public:
+		inline int GetMouseKeyCode() const { return m_MouseKeyCode; }
+
+		EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
+	protected:
+		MouseButtonEvent(int mouseKeyCode)
+			: m_MouseKeyCode(mouseKeyCode)
+		{
+		}
+
+		int m_MouseKeyCode;
+	};
+
+	class MouseButtonPressedEvent : public MouseButtonEvent
+	{
+	public:
+		MouseButtonPressedEvent(int mouseKeyCode)
+			: MouseButtonEvent(mouseKeyCode)
+		{
+		}
+
+		// Purely for debugging purposes
+		std::string ToString() const override
+		{
+			std::stringstream ss;
+			ss << "MouseButtonPressedEvent: " << m_MouseKeyCode;
+			return ss.str();
+		}
+
+		EVENT_CLASS_TYPE(MouseButtonPressed)
+	};
+
+	class MouseButtonReleasedEvent : public MouseButtonEvent
+	{
+	public:
+		MouseButtonReleasedEvent(int mouseKeyCode)
+			: MouseButtonEvent(mouseKeyCode)
+		{
+		}
+
+		// Purely for debugging purposes
+		std::string ToString() const override
+		{
+			std::stringstream ss;
+			ss << "MouseButtonReleasedEvent: " << m_MouseKeyCode;
+			return ss.str();
+		}
+
+		EVENT_CLASS_TYPE(MouseButtonReleased)
+	};
+
 	class MouseMoveEvent : public Event
 	{
 	public:
@@ -50,52 +103,5 @@ namespace Workbench
 	private:
 		float m_ScrollXOffset;
 		float m_ScrollYOffset;
-	};
-
-	class MouseButtonEvent : public Event
-	{
-	public:
-		inline int GetMouseKeyCode() const { return m_MouseKeyCode; }
-
-		EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
-	protected:
-		MouseButtonEvent(int mouseKeyCode) 
-			: m_MouseKeyCode(mouseKeyCode) {}
-
-		int m_MouseKeyCode;
-	};
-
-	class MouseButtonPressedEvent : public MouseButtonEvent
-	{
-	public:
-		MouseButtonPressedEvent(int mouseKeyCode)
-			: MouseButtonEvent(mouseKeyCode) {}
-
-		// Purely for debugging purposes
-		std::string ToString() const override
-		{
-			std::stringstream ss;
-			ss << "MouseButtonPressedEvent: " << m_MouseKeyCode;
-			return ss.str();
-		}
-
-		EVENT_CLASS_TYPE(MouseButtonPressed)
-	};
-
-	class MouseButtonReleasedEvent : public MouseButtonEvent
-	{
-	public:
-		MouseButtonReleasedEvent(int mouseKeyCode) 
-			: MouseButtonEvent(mouseKeyCode) {}
-
-		// Purely for debugging purposes
-		std::string ToString() const override
-		{
-			std::stringstream ss;
-			ss << "MouseButtonReleasedEvent: " << m_MouseKeyCode;
-			return ss.str();
-		}
-
-		EVENT_CLASS_TYPE(MouseButtonReleased)
 	};
 } 

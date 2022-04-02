@@ -65,7 +65,7 @@ namespace Workbench
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "KeyTypeEvent: " << m_KeyCode";
+			ss << "KeyTypeEvent: " << m_KeyCode;
 			return ss.str();
 		}
 

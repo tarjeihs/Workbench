@@ -19,7 +19,7 @@ project "Glad"
 
     filter "system:windows"
         systemversion "latest"
-        staticruntime "On"
+        staticruntime "off"
 
     filter { "system:windows", "configurations:Debug" }
         runtime "Debug"

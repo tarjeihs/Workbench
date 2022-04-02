@@ -29,7 +29,7 @@ workspace "Workbench"
         location "Engine"
         kind "SharedLib"
         language "C++"
-        staticruntime "On"
+        staticruntime "off"
 
         targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
         objdir ("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
@@ -104,7 +104,7 @@ workspace "Workbench"
         location "Sandbox"
         kind "ConsoleApp"
         language "C++"
-        staticruntime "On"
+        staticruntime "off"
 
         targetdir ("bin/" .. outputdir .. "/%{prj.name}")
         objdir ("bin-int/" .. outputdir .. "/%{prj.name}")

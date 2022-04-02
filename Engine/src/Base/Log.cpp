@@ -1,5 +1,4 @@
 #include "wbpch.h"
-
 #include "Log.h"
 
 // Used for spdlog set_level function

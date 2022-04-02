@@ -1,9 +1,9 @@
 #pragma once
 
-#include <functional>
-
 #include "Base/Core.h"
 #include "Base/Log.h"
+
+#include <functional>
 
 namespace Workbench
 {

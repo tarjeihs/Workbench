@@ -1,5 +1,4 @@
 #include "wbpch.h"
-
 #include "WindowsWindow.h"
 
 namespace Workbench
