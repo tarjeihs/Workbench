@@ -42,9 +42,6 @@ namespace Workbench
 
 			for (Layer* layer : m_LayerStack) { layer->OnUpdate(); }
 
-			auto [x, y] = Input::GetMousePosition();
-			WB_ENGINE_WARN("{0}, {1}", x, y);
-
 			m_Window->OnUpdate();
 		}
 	}
@@ -54,7 +51,7 @@ namespace Workbench
 		EventDispatcher dispatcher(event);
 		dispatcher.Dispatch<WindowCloseEvent>(WB_BIND_EVENT_FN(OnWindowClose));
 
-		WB_ENGINE_TRACE("{0}", event);
+		//WB_ENGINE_TRACE("{0}", event);
 
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
 		{

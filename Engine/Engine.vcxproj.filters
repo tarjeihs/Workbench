@@ -73,6 +73,7 @@
     <ClInclude Include="src\wbpch.h" />
     <ClInclude Include="src\Base\Input.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
+    <ClInclude Include="src\Base\KeyCode.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Base\Application.cpp">

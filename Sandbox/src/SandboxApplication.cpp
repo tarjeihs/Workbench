@@ -16,7 +16,11 @@ public:
 
 	void OnEvent(Workbench::Event& event) override
 	{
-
+		if (event.GetEventType() == Workbench::EventType::KeyPressed)
+		{
+			Workbench::KeyPressedEvent& _event = (Workbench::KeyPressedEvent&)event;
+			WB_CLIENT_TRACE("{0}", _event.GetKeyCode());
+		}
 	}
 };
 

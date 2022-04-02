@@ -117,7 +117,7 @@ namespace Workbench
     bool ImGuiLayer::OnMouseButtonPressedEvent(MouseButtonPressedEvent& event)
     {
 		ImGuiIO& io = ImGui::GetIO();
-        io.MouseDown[event.GetMouseKeyCode()] = true;
+        io.MouseDown[event.GetKeyCode()] = true;
 
         return false;
     }
@@ -125,7 +125,7 @@ namespace Workbench
     bool ImGuiLayer::OnMouseButtonReleasedEvent(MouseButtonReleasedEvent& event)
 	{
 		ImGuiIO& io = ImGui::GetIO();
-		io.MouseDown[event.GetMouseKeyCode()] = false;
+		io.MouseDown[event.GetKeyCode()] = false;
 
         return false;
     }

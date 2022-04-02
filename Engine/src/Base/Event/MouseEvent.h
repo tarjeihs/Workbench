@@ -7,16 +7,16 @@ namespace Workbench
 	class MouseButtonEvent : public Event
 	{
 	public:
-		inline int GetMouseKeyCode() const { return m_MouseKeyCode; }
+		inline int GetKeyCode() const { return m_KeyCode; }
 
 		EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
 	protected:
-		MouseButtonEvent(int mouseKeyCode)
-			: m_MouseKeyCode(mouseKeyCode)
+		MouseButtonEvent(int keyCode)
+			: m_KeyCode(keyCode)
 		{
 		}
 
-		int m_MouseKeyCode;
+		int m_KeyCode;
 	};
 
 	class MouseButtonPressedEvent : public MouseButtonEvent
@@ -31,7 +31,7 @@ namespace Workbench
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "MouseButtonPressedEvent: " << m_MouseKeyCode;
+			ss << "MouseButtonPressedEvent: " << m_KeyCode;
 			return ss.str();
 		}
 
@@ -50,7 +50,7 @@ namespace Workbench
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "MouseButtonReleasedEvent: " << m_MouseKeyCode;
+			ss << "MouseButtonReleasedEvent: " << m_KeyCode;
 			return ss.str();
 		}
 
