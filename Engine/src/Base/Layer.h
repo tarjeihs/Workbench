@@ -1,7 +1,11 @@
 #pragma once
 
 #include "Core.h"
+
 #include "Event/Event.h"
+#include "Event/ApplicationEvent.h"
+#include "Event/KeyEvent.h"
+#include "Event/MouseEvent.h"
 
 namespace Workbench
 {

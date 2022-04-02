@@ -54,4 +54,21 @@ namespace Workbench
 
 		EVENT_CLASS_TYPE(KeyReleased);
 	};
+
+	class KeyTypeEvent : public KeyEvent
+	{
+	public:
+		KeyTypeEvent(int keyCode)
+			: KeyEvent(keyCode) {}
+
+		// Purely for debugging purposes
+		std::string ToString() const override
+		{
+			std::stringstream ss;
+			ss << "KeyTypeEvent: " << m_KeyCode";
+			return ss.str();
+		}
+
+		EVENT_CLASS_TYPE(KeyType);
+	};
 }

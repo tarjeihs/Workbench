@@ -20,6 +20,11 @@ namespace Workbench
 
 		void OnEvent(Event& event);
 
+		inline Window& GetWindow() { return *m_Window; }
+	public:
+		static inline Application& Get() { return *s_Instance; }
+	private:
+		static Application* s_Instance;
 	private:
 		bool OnWindowClose(WindowCloseEvent& event);
 

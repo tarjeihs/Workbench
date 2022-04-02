@@ -16,7 +16,7 @@ public:
 
 	void OnEvent(Workbench::Event& event) override
 	{
-		WB_CLIENT_TRACE("{0}", event);
+
 	}
 };
 
@@ -26,6 +26,7 @@ public:
 	SandboxApplication()
 	{
 		PushLayer(new SandboxLayer());
+		PushOverlay(new Workbench::ImGuiLayer());
 	}
 	 
 	~SandboxApplication()

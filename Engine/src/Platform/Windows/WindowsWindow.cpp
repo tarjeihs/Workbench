@@ -1,4 +1,5 @@
 #include "wbpch.h"
+
 #include "WindowsWindow.h"
 
 namespace Workbench
@@ -44,8 +45,8 @@ namespace Workbench
 
 		if (!s_GLADInitialized)
 		{
-			int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-			WB_ENGINE_ASSERT(status, "Failed to initialize GLAD library.");
+			int success = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+			WB_ENGINE_ASSERT(success, "Failed to initialize GLAD library.");
 
 			s_GLADInitialized = true;
 		}
@@ -77,6 +78,13 @@ namespace Workbench
 				case GLFW_REPEAT: { KeyPressedEvent event(keyCode, 1); data.EventCallback(event); break; }
 				case GLFW_RELEASE: { KeyReleasedEvent event(keyCode); data.EventCallback(event); break; }
 			}
+		});		
+		
+		glfwSetCharCallback(m_Window, [](GLFWwindow* window, unsigned int keyCode)
+		{
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+			KeyTypeEvent event(keyCode);
+			data.EventCallback(event);
 		});
 
 		glfwSetCursorPosCallback(m_Window, [](GLFWwindow* window, double mouseX, double mouseY)

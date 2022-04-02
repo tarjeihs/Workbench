@@ -36,21 +36,21 @@ namespace Workbench
 		EVENT_CLASS_CATEGORY(EventCategoryApplication);
 	};
 
+	class AppTick : public Event
+	{
+	public:
+		AppTick() = default;
+
+		EVENT_CLASS_TYPE(AppTick);
+		EVENT_CLASS_CATEGORY(EventCategoryApplication);
+	};
+
 	class AppUpdateEvent : public Event
 	{
 	public:
 		AppUpdateEvent() = default;
 
 		EVENT_CLASS_TYPE(AppUpdate);
-		EVENT_CLASS_CATEGORY(EventCategoryApplication);
-	};
-
-	class AppLateUpdateEvent : public Event
-	{
-	public:
-		AppLateUpdateEvent() = default;
-
-		EVENT_CLASS_TYPE(AppLateUpdate);
 		EVENT_CLASS_CATEGORY(EventCategoryApplication);
 	};
 
