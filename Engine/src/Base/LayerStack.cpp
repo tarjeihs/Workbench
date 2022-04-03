@@ -5,6 +5,7 @@ namespace Workbench
 {
 	LayerStack::LayerStack()
 	{
+
 	}
 
 	LayerStack::~LayerStack()

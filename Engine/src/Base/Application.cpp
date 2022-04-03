@@ -58,8 +58,6 @@ namespace Workbench
 		EventDispatcher dispatcher(event);
 		dispatcher.Dispatch<WindowCloseEvent>(WB_BIND_EVENT_FN(OnWindowClose));
 
-		//WB_ENGINE_TRACE("{0}", event);
-
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
 		{
 			(*--it)->OnEvent(event);

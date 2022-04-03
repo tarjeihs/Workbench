@@ -27,9 +27,10 @@ workspace "Workbench"
 
     project "Engine"
         location "Engine"
-        kind "SharedLib"
+        kind "StaticLib"
         language "C++"
-        staticruntime "off"
+        cppdialect "C++17"
+        staticruntime "on"
 
         targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
         objdir ("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
@@ -76,35 +77,30 @@ workspace "Workbench"
                 "WB_PLATFORM_WINDOWS",
                 "WB_BUILD_DLL"
             }
-            
-            postbuildcommands
-            {
-                ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
-            }
 
         filter "configurations:Debug"
             defines "WB_DEBUG"
             runtime "Debug"
             buildoptions "/MDd"
-            symbols "On"
+            symbols "on"
         
         filter "configurations:Release"
             defines "WB_RELEASE"
             runtime "Release"
             buildoptions "/MD"
-            optimize "On"
+            optimize "on"
         
         filter "configurations:Dist"
             defines "WB_DIST"
             runtime "Release"
             buildoptions "/MD"
-            optimize "On"
+            optimize "on"
 
     project "Sandbox"
         location "Sandbox"
         kind "ConsoleApp"
         language "C++"
-        staticruntime "off"
+        staticruntime "on"
 
         targetdir ("bin/" .. outputdir .. "/%{prj.name}")
         objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -118,7 +114,8 @@ workspace "Workbench"
         includedirs
         {
             "Engine/vendor/spdlog/include",
-            "Engine/src"
+            "Engine/src",
+            "Engine/vendor"
         }
 
         links
@@ -140,16 +137,16 @@ workspace "Workbench"
             defines "WB_DEBUG"
             runtime "Debug"
             buildoptions "/MDd"
-            symbols "On"
+            symbols "on"
     
         filter "configurations:Release"
             defines "WB_RELEASE"
             runtime "Release"
             buildoptions "/MD"
-            optimize "On"
+            optimize "on"
     
         filter "configurations:Dist"
             defines "WB_DIST"
             runtime "Release"
             buildoptions "/MD"
-            optimize "On"
+            optimize "on"

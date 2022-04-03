@@ -1,6 +1,5 @@
 #include <Workbench.h>
 
-// Example
 class SandboxLayer : public Workbench::Layer
 {
 public:
@@ -9,12 +8,17 @@ public:
 	{
 	}
 
-	void OnUpdate() override
+	virtual void OnUpdate() override
+	{
+
+	}
+
+	virtual void OnImGuiRender() override
 	{
 		
 	}
 
-	void OnEvent(Workbench::Event& event) override
+	virtual void OnEvent(Workbench::Event& event) override
 	{
 		
 	}
@@ -26,7 +30,6 @@ public:
 	SandboxApplication()
 	{
 		PushLayer(new SandboxLayer());
-		//PushOverlay(new Workbench::ImGuiLayer());
 	}
 	 
 	~SandboxApplication()
