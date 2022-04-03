@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Base/Window.h"
+#include "Platform/OpenGL/OpenGLContext.h"
 
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
@@ -30,15 +31,16 @@ namespace Workbench
 		struct WindowData
 		{
 			std::string Title;
-			unsigned int Width;
-			unsigned int Height;
-			bool VSync;
+			uint32_t Width = 0;
+			uint32_t Height = 0;
+			bool VSync = 0;
 
 			EventCallbackFn EventCallback;
 		};
 	private:
 		GLFWwindow* m_Window;
 		WindowData m_WindowData;
+		GraphicsContext* m_Context;
 	};
 }
 

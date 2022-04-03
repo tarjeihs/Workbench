@@ -38,7 +38,10 @@ namespace Workbench
 		}
 
 		m_Window = glfwCreateWindow((int)properties.Width, (int)properties.Height, m_WindowData.Title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(m_Window);
+		
+		m_Context = new OpenGLContext(m_Window);
+		m_Context->Init();
+
 		glfwSetWindowUserPointer(m_Window, &m_WindowData);
 		SetVSync(true);
 
@@ -119,7 +122,7 @@ namespace Workbench
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		m_Context->SwapBuffers();
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)

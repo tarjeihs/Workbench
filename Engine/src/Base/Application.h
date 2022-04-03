@@ -34,6 +34,8 @@ namespace Workbench
 
 		LayerStack m_LayerStack;
 		ImGuiLayer* m_ImGuiLayer;
+
+		uint32_t m_VertexArray, m_VertexBuffer, m_IndexBuffer;
 	};
 
 	// Will be defined through Sandbox
