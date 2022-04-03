@@ -70,7 +70,7 @@ namespace Workbench
     {
         Application& application = Application::Get();
         ImGuiIO& io = ImGui::GetIO();
-        io.DisplaySize = ImVec2(application.GetWindow().GetWidth(), application.GetWindow().GetHeight());
+        io.DisplaySize = ImVec2((float)application.GetWindow().GetWidth(), (float)application.GetWindow().GetHeight());
 
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());

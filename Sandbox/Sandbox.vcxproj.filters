@@ -3,4 +3,7 @@
   <ItemGroup>
     <ClCompile Include="src\SandboxApplication.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="premake5.lua" />
+  </ItemGroup>
 </Project>

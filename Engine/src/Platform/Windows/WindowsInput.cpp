@@ -9,7 +9,7 @@ namespace Workbench
 {
 	Input* Input::s_Instance = new WindowsInput();
 
-	bool Workbench::WindowsInput::KeyPressedImpl(int keyCode)
+	bool WindowsInput::KeyPressedImpl(int keyCode)
 	{
 		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 		auto state = glfwGetKey(window, keyCode);

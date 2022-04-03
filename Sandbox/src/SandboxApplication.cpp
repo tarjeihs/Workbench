@@ -15,7 +15,7 @@ public:
 
 	virtual void OnImGuiRender() override
 	{
-		
+
 	}
 
 	virtual void OnEvent(Workbench::Event& event) override

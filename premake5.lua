@@ -44,13 +44,7 @@ workspace "Workbench"
             "%{prj.name}/src/**.cpp" 
         }
 
-        defines 
-        {
-            "_CRT_SECURE_NO_WARNINGS",
-            "GLFW_INCLUDE_NONE",
-            "IMGUI_IMPL_OPENGL_LOADER_CUSTOM"
-        }
-
+        
         includedirs 
         {
             "%{prj.name}/src",
@@ -59,7 +53,7 @@ workspace "Workbench"
             "%{IncludeDir.Glad}",
             "%{IncludeDir.ImGui}"
         }
-
+        
         links 
         {
             "Glad",
@@ -67,7 +61,12 @@ workspace "Workbench"
             "ImGui",
             "opengl32.lib"
         }
-
+        
+        defines 
+        {
+            "_CRT_SECURE_NO_WARNINGS"
+        }
+        
         filter "system:windows"
             cppdialect "C++17"
             systemversion "latest"
@@ -75,32 +74,31 @@ workspace "Workbench"
             defines 
             {
                 "WB_PLATFORM_WINDOWS",
-                "WB_BUILD_DLL"
+                "WB_BUILD_DLL",
+                "GLFW_INCLUDE_NONE"
             }
 
         filter "configurations:Debug"
             defines "WB_DEBUG"
             runtime "Debug"
-            buildoptions "/MDd"
             symbols "on"
         
         filter "configurations:Release"
             defines "WB_RELEASE"
             runtime "Release"
-            buildoptions "/MD"
             optimize "on"
         
         filter "configurations:Dist"
             defines "WB_DIST"
             runtime "Release"
-            buildoptions "/MD"
             optimize "on"
 
     project "Sandbox"
         location "Sandbox"
         kind "ConsoleApp"
         language "C++"
-        staticruntime "on"
+        cppdialect "C++17"
+        staticruntime "off"
 
         targetdir ("bin/" .. outputdir .. "/%{prj.name}")
         objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -123,6 +121,11 @@ workspace "Workbench"
             "Engine"
         }
 
+        defines 
+        {
+            "_CRT_SECURE_NO_WARNINGS"
+        }
+
         filter "system:windows"
             cppdialect "C++17"
             staticruntime "On"
@@ -136,17 +139,14 @@ workspace "Workbench"
         filter "configurations:Debug"
             defines "WB_DEBUG"
             runtime "Debug"
-            buildoptions "/MDd"
             symbols "on"
     
         filter "configurations:Release"
             defines "WB_RELEASE"
             runtime "Release"
-            buildoptions "/MD"
             optimize "on"
     
         filter "configurations:Dist"
             defines "WB_DIST"
             runtime "Release"
-            buildoptions "/MD"
             optimize "on"
