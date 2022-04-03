@@ -51,6 +51,12 @@
     <ClInclude Include="src\Base\ImGui\ImGuiLayer.h">
       <Filter>Base\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="src\Base\Input.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Base\KeyCode.h">
+      <Filter>Base</Filter>
+    </ClInclude>
     <ClInclude Include="src\Base\Layer.h">
       <Filter>Base</Filter>
     </ClInclude>
@@ -63,21 +69,21 @@
     <ClInclude Include="src\Base\Window.h">
       <Filter>Base</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\OpenGL\imgui_impl_opengl3.h">
-      <Filter>Platform\OpenGL</Filter>
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
+      <Filter>Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\Workbench.h" />
     <ClInclude Include="src\wbpch.h" />
-    <ClInclude Include="src\Base\Input.h" />
-    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
-    <ClInclude Include="src\Base\KeyCode.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Base\Application.cpp">
       <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Base\ImGui\ImGuiBuild.cpp">
+      <Filter>Base\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\Base\ImGui\ImGuiLayer.cpp">
       <Filter>Base\ImGui</Filter>
@@ -91,13 +97,12 @@
     <ClCompile Include="src\Base\Log.cpp">
       <Filter>Base</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\OpenGL\imgui_impl_opengl3.cpp">
-      <Filter>Platform\OpenGL</Filter>
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
+      <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\wbpch.cpp" />
-    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
   </ItemGroup>
 </Project>

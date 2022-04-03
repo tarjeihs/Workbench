@@ -10,23 +10,13 @@ namespace Workbench
 		ImGuiLayer();
 		~ImGuiLayer();
 
-		void OnAttach();
-		void OnDetach();
-		void OnUpdate();
-		void OnEvent(Event& event);
+		virtual void OnAttach() override;
+		virtual void OnDetach() override;
+		virtual void OnImGuiRender() override;
+
+		void Begin();
+		void End();
 	private:
-		bool OnWindowResizeEvent(WindowResizeEvent& event);
-		bool OnWindowCloseEvent(WindowCloseEvent& event);
-
-		bool OnKeyPressedEvent(KeyPressedEvent& event);
-		bool OnKeyReleasedEvent(KeyReleasedEvent& event);
-		bool OnKeyTypeEvent(KeyTypeEvent& event);
-
-		bool OnMouseButtonPressedEvent(MouseButtonPressedEvent& event);
-		bool OnMouseButtonReleasedEvent(MouseButtonReleasedEvent& event);
-		bool OnMouseButtonMoveEvent(MouseMoveEvent& event);
-		bool OnMouseButtonScrollEvent(MouseScrollEvent& event);
-
 		float m_Time = 0.0;
 	};
 }

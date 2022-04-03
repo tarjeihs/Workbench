@@ -4,6 +4,7 @@
 #include "Window.h"
 
 #include "LayerStack.h"
+#include "ImGui/ImGuiLayer.h"
 
 namespace Workbench
 {
@@ -32,6 +33,7 @@ namespace Workbench
 		bool m_Running;
 
 		LayerStack m_LayerStack;
+		ImGuiLayer* m_ImGuiLayer;
 	};
 
 	// Will be defined through Sandbox
