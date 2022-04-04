@@ -6,6 +6,10 @@
 #include "LayerStack.h"
 #include "ImGui/ImGuiLayer.h"
 
+// TEMPORARY
+#include "Renderer/Shader.h"
+#include "Renderer/Buffer.h"
+
 namespace Workbench
 {
 	class WORKBENCH_API Application
@@ -35,7 +39,11 @@ namespace Workbench
 		LayerStack m_LayerStack;
 		ImGuiLayer* m_ImGuiLayer;
 
-		uint32_t m_VertexArray, m_VertexBuffer, m_IndexBuffer;
+		// TEMPORARY
+		uint32_t m_VertexArray;
+		std::unique_ptr<Shader> m_Shader;
+		std::unique_ptr<VertexBuffer> m_VertexBuffer;
+		std::unique_ptr<IndexBuffer> m_IndexBuffer;
 	};
 
 	// Will be defined through Sandbox

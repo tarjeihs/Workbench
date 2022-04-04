@@ -17,6 +17,11 @@ namespace Workbench
 		glfwMakeContextCurrent(m_WindowHandle);
 		int success = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		WB_ENGINE_ASSERT(success, "Failed to initialize GLAD library.");
+
+		WB_ENGINE_INFO("OpenGL Render Info:");
+		WB_ENGINE_INFO("\tVendor: {0}", glGetString(GL_VENDOR));
+		WB_ENGINE_INFO("\tRenderer: {0}", glGetString(GL_RENDERER));
+		WB_ENGINE_INFO("\tVersion: {0}", glGetString(GL_VERSION));
 	}
 
 	void OpenGLContext::SwapBuffers()
