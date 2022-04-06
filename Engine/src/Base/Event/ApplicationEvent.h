@@ -12,14 +12,6 @@ namespace Workbench
 
 		unsigned int GetWidth() const { return m_Width; }
 		unsigned int GetHeight() const { return m_Height; }
-	
-		// Purely for debugging purposes
-		std::string ToString() const override
-		{
-			std::stringstream ss;
-			ss << "WindowResizeEvent: " << m_Width << ", " << m_Height;
-			return ss.str();
-		}
 
 		EVENT_CLASS_TYPE(WindowResize);
 		EVENT_CLASS_CATEGORY(EventCategoryApplication);
@@ -36,30 +28,30 @@ namespace Workbench
 		EVENT_CLASS_CATEGORY(EventCategoryApplication);
 	};
 
-	class AppTick : public Event
+	class ApplicationTickEvent : public Event
 	{
 	public:
-		AppTick() = default;
+		ApplicationTickEvent() = default;
 
-		EVENT_CLASS_TYPE(AppTick);
+		EVENT_CLASS_TYPE(ApplicationTick);
 		EVENT_CLASS_CATEGORY(EventCategoryApplication);
 	};
 
-	class AppUpdateEvent : public Event
+	class ApplicationUpdateEvent : public Event
 	{
 	public:
-		AppUpdateEvent() = default;
+		ApplicationUpdateEvent() = default;
 
-		EVENT_CLASS_TYPE(AppUpdate);
+		EVENT_CLASS_TYPE(ApplicationUpdate);
 		EVENT_CLASS_CATEGORY(EventCategoryApplication);
 	};
 
-	class AppRenderEvent : public Event
+	class ApplicationRenderEvent : public Event
 	{
 	public:
-		AppRenderEvent() = default;
+		ApplicationRenderEvent() = default;
 
-		EVENT_CLASS_TYPE(AppRender);
+		EVENT_CLASS_TYPE(ApplicationRender);
 		EVENT_CLASS_CATEGORY(EventCategoryApplication);
 	};
 }

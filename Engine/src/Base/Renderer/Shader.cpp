@@ -3,6 +3,8 @@
 
 #include <glad/glad.h>
 
+#include "glm/gtc/type_ptr.hpp"
+
 namespace Workbench
 {
 	Shader::Shader(const std::string& vertexSource, const std::string& fragmentSource)
@@ -125,4 +127,11 @@ namespace Workbench
 	{
 		glUseProgram(0);
 	}
+
+	void Shader::UploadUniformMatrix(const char* name, const glm::mat4& matrix)
+	{
+		GLint uniformLocation = glGetUniformLocation(m_RendererID, name);
+		glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(matrix));
+	}
+
 }

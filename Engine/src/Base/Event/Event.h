@@ -11,7 +11,7 @@ namespace Workbench
 	{
 		None = 0,
 		WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved,
-		AppTick, AppUpdate, AppRender,
+		ApplicationTick, ApplicationUpdate, ApplicationRender,
 		KeyPressed, KeyReleased, KeyType,
 		MouseButtonPressed, MouseButtonReleased, MouseMove, MouseScroll
 	};

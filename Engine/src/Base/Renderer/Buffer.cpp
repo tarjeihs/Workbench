@@ -8,9 +8,9 @@ namespace Workbench
 {
 	VertexBuffer* VertexBuffer::Create(float* vertices, uint32_t size)
 	{
-		switch (Renderer::GetCurrentAPI())
+		switch (RendererAPI::GetAPIType())
 		{
-			case RendererAPI::OpenGL: return new OpenGLVertexBuffer(vertices, size);
+			case RendererAPI::APIType::OpenGL: return new OpenGLVertexBuffer(vertices, size);
 		}
 
 		WB_ENGINE_ASSERT(false, "Failed to specify current RendererAPI.");
@@ -18,9 +18,9 @@ namespace Workbench
 	
 	IndexBuffer* IndexBuffer::Create(uint32_t* indices, uint32_t size)
 	{
-		switch (Renderer::GetCurrentAPI())
+		switch (RendererAPI::GetAPIType())
 		{
-			case RendererAPI::OpenGL: return new OpenGLIndexBuffer(indices, size);
+			case RendererAPI::APIType::OpenGL: return new OpenGLIndexBuffer(indices, size);
 		}
 
 		WB_ENGINE_ASSERT(false, "Failed to specify current RendererAPI.");

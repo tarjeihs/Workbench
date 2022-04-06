@@ -7,8 +7,10 @@
 #include "ImGui/ImGuiLayer.h"
 
 // TEMPORARY
-#include "Renderer/Shader.h"
+#include "Renderer/VertexArray.h"
 #include "Renderer/Buffer.h"
+#include "Renderer/Shader.h"
+#include "Renderer/OrthographicCamera.h"
 
 namespace Workbench
 {
@@ -26,6 +28,8 @@ namespace Workbench
 		void OnEvent(Event& event);
 
 		inline Window& GetWindow() { return *m_Window; }
+
+		void Exit(int exitCode = 0);
 	public:
 		static inline Application& Get() { return *s_Instance; }
 	private:
@@ -34,16 +38,11 @@ namespace Workbench
 		bool OnWindowClose(WindowCloseEvent& event);
 
 		std::unique_ptr<Window> m_Window;
-		bool m_Running;
 
 		LayerStack m_LayerStack;
 		ImGuiLayer* m_ImGuiLayer;
 
-		// TEMPORARY
-		uint32_t m_VertexArray;
-		std::unique_ptr<Shader> m_Shader;
-		std::unique_ptr<VertexBuffer> m_VertexBuffer;
-		std::unique_ptr<IndexBuffer> m_IndexBuffer;
+		bool m_Running;
 	};
 
 	// Will be defined through Sandbox

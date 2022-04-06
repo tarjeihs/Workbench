@@ -20,6 +20,7 @@ workspace "Workbench"
     IncludeDir["GLFW"] = "Engine/vendor/GLFW/include"
     IncludeDir["Glad"] = "Engine/vendor/Glad/include"
     IncludeDir["ImGui"] = "Engine/vendor/imgui"
+    IncludeDir["glm"] = "Engine/vendor/glm"
     
     include "Engine/vendor/GLFW"
     include "Engine/vendor/Glad"
@@ -51,7 +52,8 @@ workspace "Workbench"
             "%{prj.name}/vendor/spdlog/include",
             "%{IncludeDir.GLFW}",
             "%{IncludeDir.Glad}",
-            "%{IncludeDir.ImGui}"
+            "%{IncludeDir.ImGui}",
+            "%{IncludeDir.glm}"
         }
         
         links 
@@ -113,7 +115,8 @@ workspace "Workbench"
         {
             "Engine/vendor/spdlog/include",
             "Engine/src",
-            "Engine/vendor"
+            "Engine/vendor",
+            "%{IncludeDir.glm}"
         }
 
         links

@@ -27,7 +27,7 @@ namespace Workbench
 		m_WindowData.Width = properties.Width;
 		m_WindowData.Height = properties.Height;
 
-		WB_ENGINE_INFO("Creating OpenGL window {0} ({1}, {2})", properties.Title, properties.Width, properties.Height);
+		WB_ENGINE_INFO("Creating window {0} ({1}, {2})", properties.Title, properties.Width, properties.Height);
 
 		if (!s_GLFWInitialized)
 		{
@@ -44,14 +44,6 @@ namespace Workbench
 
 		glfwSetWindowUserPointer(m_Window, &m_WindowData);
 		SetVSync(true);
-
-		if (!s_GLADInitialized)
-		{
-			int success = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-			WB_ENGINE_ASSERT(success, "Failed to initialize GLAD library.");
-
-			s_GLADInitialized = true;
-		}
 
 		// GLFW callbacks
 		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height)
