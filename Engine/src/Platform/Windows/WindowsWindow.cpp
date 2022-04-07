@@ -43,7 +43,6 @@ namespace Workbench
 		m_Context->Init();
 
 		glfwSetWindowUserPointer(m_Window, &m_WindowData);
-		SetVSync(true);
 
 		// GLFW callbacks
 		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height)

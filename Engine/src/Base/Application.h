@@ -2,15 +2,12 @@
 
 #include "Core.h"
 #include "Window.h"
+#include "ExitFlag.h"
 
 #include "LayerStack.h"
 #include "ImGui/ImGuiLayer.h"
 
-// TEMPORARY
-#include "Renderer/VertexArray.h"
-#include "Renderer/Buffer.h"
-#include "Renderer/Shader.h"
-#include "Renderer/OrthographicCamera.h"
+#include "Timestep.h"
 
 namespace Workbench
 {
@@ -27,22 +24,22 @@ namespace Workbench
 
 		void OnEvent(Event& event);
 
+		void Exit(const ExitFlag& exitFlag);
+
 		inline Window& GetWindow() { return *m_Window; }
 
-		void Exit(int exitCode = 0);
-	public:
 		static inline Application& Get() { return *s_Instance; }
 	private:
-		static Application* s_Instance;
-	private:
 		bool OnWindowClose(WindowCloseEvent& event);
-
+	private:
 		std::unique_ptr<Window> m_Window;
-
 		LayerStack m_LayerStack;
 		ImGuiLayer* m_ImGuiLayer;
 
 		bool m_Running;
+		float m_LastFrameTime = 0.0f;
+
+		static Application* s_Instance;
 	};
 
 	// Will be defined through Sandbox

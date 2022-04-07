@@ -1,9 +1,7 @@
 #include "wbpch.h"
 #include "Application.h"
 
-// Temporary!
-#include "Renderer/Renderer.h"
-#include "KeyCode.h"
+#include <glfw/glfw3.h>
 
 namespace Workbench
 {
@@ -15,6 +13,7 @@ namespace Workbench
 
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(WB_BIND_EVENT_FN(OnEvent));
+		m_Window->SetVSync(false);
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
@@ -41,7 +40,11 @@ namespace Workbench
 	{
 		while (m_Running)
 		{
-			for (Layer* layer : m_LayerStack) { layer->OnUpdate(); }
+			float time = (float)glfwGetTime();
+			Timestep timestep = time - m_LastFrameTime;
+			m_LastFrameTime = time;
+
+			for (Layer* layer : m_LayerStack) { layer->OnUpdate(timestep); }
 
 			m_ImGuiLayer->Begin();
 			for (Layer* layer : m_LayerStack) { layer->OnImGuiRender(); }
@@ -70,10 +73,10 @@ namespace Workbench
 		return m_Running;
 	}
 
-	void Application::Exit(int exitCode)
+	void Application::Exit(const ExitFlag& exitFlag)
 	{
-		WB_ENGINE_WARN("Application exited with code: {0}", exitCode);
-		
+		WB_ENGINE_WARN("Application exited with code: {0}", static_cast<int>(exitFlag));
+
 		m_Running = false;
 	}
 }

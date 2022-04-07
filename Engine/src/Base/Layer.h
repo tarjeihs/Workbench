@@ -7,6 +7,8 @@
 #include "Event/KeyEvent.h"
 #include "Event/MouseEvent.h"
 
+#include "Timestep.h"
+
 namespace Workbench
 {
 	class WORKBENCH_API Layer
@@ -17,7 +19,7 @@ namespace Workbench
 
 		virtual void OnAttach() {} // Create
 		virtual void OnDetach() {} // Destroy
-		virtual void OnUpdate() {} // Layer Update
+		virtual void OnUpdate(Timestep ts) {} // Layer Update
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& event) {}
 

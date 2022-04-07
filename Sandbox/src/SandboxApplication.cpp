@@ -68,22 +68,22 @@ public:
 		m_Shader.reset(new Workbench::Shader(vertexSource, fragmentSource));
 	}
 
-	virtual void OnUpdate() override
+	virtual void OnUpdate(Workbench::Timestep ts) override
 	{
 		if (Workbench::Input::KeyPressed(WB_KEY_LEFT))
-			{ m_CameraPosition.x -= m_CameraPositionSpeed; WB_ENGINE_TRACE("{0}", m_CameraPosition.x); }
+			m_CameraPosition.x -= m_CameraPositionSpeed * ts;
 		else if (Workbench::Input::KeyPressed(WB_KEY_RIGHT)) 
-			{ m_CameraPosition.x += m_CameraPositionSpeed; WB_ENGINE_TRACE("{0}", m_CameraPosition.x); }
+			m_CameraPosition.x += m_CameraPositionSpeed * ts;
 
 		if (Workbench::Input::KeyPressed(WB_KEY_DOWN))
-			m_CameraPosition.y -= m_CameraPositionSpeed;
+			m_CameraPosition.y -= m_CameraPositionSpeed * ts;
 		else if (Workbench::Input::KeyPressed(WB_KEY_UP)) 
-			m_CameraPosition.y += m_CameraPositionSpeed;
+			m_CameraPosition.y += m_CameraPositionSpeed * ts;
 
 		if (Workbench::Input::KeyPressed(WB_KEY_A)) 
-			m_CameraRotation -= m_CameraRotationSpeed;
+			m_CameraRotation -= m_CameraRotationSpeed * ts;
 		else if (Workbench::Input::KeyPressed(WB_KEY_D)) 
-			m_CameraRotation += m_CameraRotationSpeed;
+			m_CameraRotation += m_CameraRotationSpeed * ts;
 
 
 		Workbench::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0 });
@@ -118,8 +118,8 @@ private:
 	glm::vec3 m_CameraPosition;
 	float m_CameraRotation = 0.0f;
 
-	float m_CameraPositionSpeed = 0.1f;
-	float m_CameraRotationSpeed = 0.1f;
+	float m_CameraPositionSpeed = 1.0f;
+	float m_CameraRotationSpeed = 1.0f;
 };
 
 class SandboxApplication : public Workbench::Application

@@ -3,7 +3,5 @@
 
 namespace Workbench
 {
-	RendererAPI::APIType RendererAPI::s_APIType = RendererAPI::APIType::OpenGL;
-
-	 
+	RendererAPI::APIType RendererAPI::s_APIType = RendererAPI::APIType::OpenGL; 
 }

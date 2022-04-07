@@ -153,6 +153,7 @@
     <ClInclude Include="src\Base\Event\Event.h" />
     <ClInclude Include="src\Base\Event\KeyEvent.h" />
     <ClInclude Include="src\Base\Event\MouseEvent.h" />
+    <ClInclude Include="src\Base\ExitFlag.h" />
     <ClInclude Include="src\Base\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\Base\Input.h" />
     <ClInclude Include="src\Base\KeyCode.h" />
@@ -168,6 +169,7 @@
     <ClInclude Include="src\Base\Renderer\Shader.h" />
     <ClInclude Include="src\Base\Renderer\Texture.h" />
     <ClInclude Include="src\Base\Renderer\VertexArray.h" />
+    <ClInclude Include="src\Base\Timestep.h" />
     <ClInclude Include="src\Base\Window.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
