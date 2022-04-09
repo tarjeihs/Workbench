@@ -18,8 +18,8 @@ namespace Workbench
 		unsigned int Height;
 
 		WindowProperties(const std::string& title = "Workbench Engine",
-					unsigned int width = 1720,
-					unsigned int height = 1080)
+					unsigned int width = 1280,
+					unsigned int height = 720)
 			: Title(title), Width(width), Height(height) {}
 	};
 

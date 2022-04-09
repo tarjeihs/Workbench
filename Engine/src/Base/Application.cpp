@@ -41,13 +41,13 @@ namespace Workbench
 		while (m_Running)
 		{
 			float time = (float)glfwGetTime();
-			Timestep timestep = time - m_LastFrameTime;
+			Timestep ts = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 
-			for (Layer* layer : m_LayerStack) { layer->OnUpdate(timestep); }
+			for (Layer* layer : m_LayerStack) { layer->OnUpdate(ts); }
 
 			m_ImGuiLayer->Begin();
-			for (Layer* layer : m_LayerStack) { layer->OnImGuiRender(); }
+			for (Layer* layer : m_LayerStack) { layer->OnImGuiRender(ts); }
 			m_ImGuiLayer->End();
 
 			m_Window->OnUpdate();
@@ -75,7 +75,7 @@ namespace Workbench
 
 	void Application::Exit(const ExitFlag& exitFlag)
 	{
-		WB_ENGINE_WARN("Application exited with code: {0}", static_cast<int>(exitFlag));
+		WB_ENGINE_WARN("Application exited with flag: {0}", static_cast<int>(exitFlag));
 
 		m_Running = false;
 	}

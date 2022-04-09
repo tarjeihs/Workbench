@@ -51,6 +51,9 @@
     <ClInclude Include="src\Base\Event\MouseEvent.h">
       <Filter>Base\Event</Filter>
     </ClInclude>
+    <ClInclude Include="src\Base\ExitFlag.h">
+      <Filter>Base</Filter>
+    </ClInclude>
     <ClInclude Include="src\Base\ImGui\ImGuiLayer.h">
       <Filter>Base\ImGui</Filter>
     </ClInclude>
@@ -93,8 +96,14 @@
     <ClInclude Include="src\Base\Renderer\Texture.h">
       <Filter>Base\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Base\Renderer\Transform.h">
+      <Filter>Base\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Base\Renderer\VertexArray.h">
       <Filter>Base\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Base\Timestep.h">
+      <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="src\Base\Window.h">
       <Filter>Base</Filter>
@@ -119,8 +128,7 @@
     </ClInclude>
     <ClInclude Include="src\Workbench.h" />
     <ClInclude Include="src\wbpch.h" />
-    <ClInclude Include="src\Base\Timestep.h" />
-    <ClInclude Include="src\Base\ExitFlag.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Base\Application.cpp">
@@ -181,5 +189,6 @@
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\wbpch.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
   </ItemGroup>
 </Project>

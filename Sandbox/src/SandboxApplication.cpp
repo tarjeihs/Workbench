@@ -1,6 +1,7 @@
 #include <Workbench.h>
 
-#include <stdlib.h>
+// Temporary
+#include "glm/gtc/matrix_transform.hpp"
 
 class SandboxLayer : public Workbench::Layer
 {
@@ -38,6 +39,7 @@ public:
 			layout(location = 1) in vec4 a_Color;
 
 			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
 
 			out vec3 v_Position;
 			out vec4 v_Color;
@@ -46,7 +48,7 @@ public:
 			{
 				v_Position = a_Position;
 				v_Color = a_Color;
-				gl_Position = u_ViewProjection * vec4(a_Position, 1.0);
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
 			}
 		)";
 
@@ -65,7 +67,7 @@ public:
 			}
 		)";
 
-		m_Shader.reset(new Workbench::Shader(vertexSource, fragmentSource));
+		m_Shader.reset(Workbench::Shader::Create(vertexSource, fragmentSource));
 	}
 
 	virtual void OnUpdate(Workbench::Timestep ts) override
@@ -100,14 +102,13 @@ public:
 		Workbench::Renderer::EndScene();
 	}
 
-	virtual void OnImGuiRender() override
+	virtual void OnImGuiRender(Workbench::Timestep ts) override
 	{
-
+		
 	}
 
 	virtual void OnEvent(Workbench::Event& event) override
 	{
-
 	}
 private:
 	std::shared_ptr<Workbench::Shader> m_Shader;
@@ -119,7 +120,7 @@ private:
 	float m_CameraRotation = 0.0f;
 
 	float m_CameraPositionSpeed = 1.0f;
-	float m_CameraRotationSpeed = 1.0f;
+	float m_CameraRotationSpeed = 10.0f;
 };
 
 class SandboxApplication : public Workbench::Application

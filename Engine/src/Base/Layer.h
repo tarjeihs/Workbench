@@ -20,7 +20,7 @@ namespace Workbench
 		virtual void OnAttach() {} // Create
 		virtual void OnDetach() {} // Destroy
 		virtual void OnUpdate(Timestep ts) {} // Layer Update
-		virtual void OnImGuiRender() {}
+		virtual void OnImGuiRender(Timestep ts) {}
 		virtual void OnEvent(Event& event) {}
 
 		inline const std::string GetDebugName() const { return m_DebugName; }

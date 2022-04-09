@@ -1,12 +1,12 @@
 #include "wbpch.h"
 #include "ImGuiLayer.h"
 
-#include <GLFW/glfw3.h>
+#include "Base/Application.h"
 
 #include "backends/imgui_impl_glfw.h"
 #include "backends/imgui_impl_opengl3.h"
 
-#include "Base/Application.h"
+#include <GLFW/glfw3.h>
 
 namespace Workbench
 {
@@ -53,7 +53,7 @@ namespace Workbench
         ImGui::DestroyContext();
     }
 
-    void ImGuiLayer::OnImGuiRender()
+    void ImGuiLayer::OnImGuiRender(Timestep ts)
     {
         static bool showDemoWindow = true;
         ImGui::ShowDemoWindow(&showDemoWindow);

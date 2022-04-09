@@ -22,7 +22,6 @@ namespace Workbench
 		void RecalculateViewMatrix();
 	private:
 		glm::vec3 m_CameraPosition = { 0.0f, 0.0f, 0.0f };
-		glm::vec3 _m_CameraRotation = { 0.0f, 0.0f, 1.0f };
 		float m_CameraRotation = 0.0f;
 
 		glm::mat4 m_ProjectionMatrix;
