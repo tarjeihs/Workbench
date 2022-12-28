@@ -1,7 +1,7 @@
 #include "wbpch.h"
-#include "WindowsInput.h"
+#include "Platform/Windows/WindowsInput.h"
 
-#include "Base/Application.h"
+#include "Engine/Core/Application.h"
 
 #include <GLFW/glfw3.h>
 

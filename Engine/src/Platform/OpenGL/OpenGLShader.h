@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Base/Renderer/Shader.h"
+#include "Engine/Renderer/Shader.h"
 
 #include <string>
 #include <glm/glm.hpp>
@@ -28,18 +28,16 @@ namespace Workbench
 
 		virtual const std::string& GetName() const override { return m_Name; }
 
-		virtual void UploadUniformFloat(const char* name, const float value);
-		virtual void UploadUniformFloat2(const char* name, const glm::vec2& value);
-		virtual void UploadUniformFloat3(const char* name, const glm::vec3& value);
-		virtual void UploadUniformFloat4(const char* name, const glm::vec4& value);
+		virtual void UploadUniformFloat(const std::string& name, const float value);
+		virtual void UploadUniformFloat2(const std::string& name, const glm::vec2& value);
+		virtual void UploadUniformFloat3(const std::string& name, const glm::vec3& value);
+		virtual void UploadUniformFloat4(const std::string& name, const glm::vec4& value);
 
-		virtual void UploadUniformInt(const char* name, const int value);
-		virtual void UploadUniformInt2(const char* name, const glm::vec2& value);
-		virtual void UploadUniformInt3(const char* name, const glm::vec3& value);
-		virtual void UploadUniformInt4(const char* name, const glm::vec4& value);
+		virtual void UploadUniformInt(const std::string& name, const int value);
+		virtual void UploadUniformIntArray(const std::string& name, int* values, uint32_t count);
 
-		virtual void UploadUniformMat3(const char* name, const glm::mat3& matrix);
-		virtual void UploadUniformMat4(const char* name, const glm::mat4& matrix);
+		virtual void UploadUniformMat3(const std::string& name, const glm::mat3& matrix);
+		virtual void UploadUniformMat4(const std::string& name, const glm::mat4& matrix);
 	private:
 		std::string CacheGLSLContent(const std::string& filepath);
 		std::unordered_map<GLenum, std::string> TokenizeGLSLContent(const std::string& source);

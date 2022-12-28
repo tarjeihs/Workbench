@@ -1,23 +1,21 @@
 #pragma once
 
-// For use by Sandbox application
-#include "Base/Application.h"
+#include "Engine/Core/Application.h"
+#include "Engine/Core/Layer.h"
+#include "Engine/Core/Input.h"
+#include "Engine/Core/KeyCode.h"
 
-#include "Base/Layer.h"
-#include "Base/ImGui/ImGuiLayer.h"
+#include "Engine/ImGui/ImGuiLayer.h"
 
-#include "Base/Renderer/Renderer.h"
-#include "Base/Renderer/RendererAPI.h"
-#include "Base/Renderer/RenderCommand.h"
-#include "Base/Renderer/VertexArray.h"
-#include "Base/Renderer/Buffer.h"
-#include "Base/Renderer/Texture.h"
-#include "Base/Renderer/OrthographicCamera.h"
-
-#include "Base/Input.h"
-#include "Base/KeyCode.h"
+#include "Engine/Renderer/Renderer.h"
+#include "Engine/Renderer/RendererAPI.h"
+#include "Engine/Renderer/RenderCommand.h"
+#include "Engine/Renderer/VertexArray.h"
+#include "Engine/Renderer/Buffer.h"
+#include "Engine/Renderer/Texture.h"
+#include "Engine/Renderer/OrthographicCamera.h"
 
 #include "Platform/OpenGL/OpenGLShader.h"
 
 // Entrypoint
-//#include "Base/Entrypoint.h"
+//#include "Engine/Core/Entrypoint.h"

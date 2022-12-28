@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Base/Renderer/Buffer.h"
+#include "Engine/Renderer/Buffer.h"
 
 namespace Workbench
 {

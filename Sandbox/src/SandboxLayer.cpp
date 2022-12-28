@@ -2,6 +2,7 @@
 
 // Temporary
 #include "glm/gtc/matrix_transform.hpp"
+#include <imgui/imgui.h>
 
 SandboxLayer::SandboxLayer()
 	: Layer("Sandbox"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition({ 0.0f, 0.0f, 0.0f })
@@ -35,8 +36,7 @@ SandboxLayer::SandboxLayer()
 	m_VertexArray->AddVertexBuffer(m_VertexBuffer);
 	m_VertexArray->AddIndexBuffer(m_IndexBuffer);
 
-	std::string shaderSrc = "assets/shader.glsl";
-	m_Shader = Workbench::Shader::Create(shaderSrc);
+	m_Shader = Workbench::Shader::Create("assets/shader.glsl");
 }
 
 void SandboxLayer::OnAttach()
@@ -71,15 +71,16 @@ void SandboxLayer::OnUpdate(Workbench::Timestep ts)
 	m_Camera.SetCameraRotation(m_CameraRotation);
 
 	Workbench::Renderer::BeginScene(m_Camera);
-
 	Workbench::Renderer::Submit(m_Shader, m_VertexArray);
-
 	Workbench::Renderer::EndScene();
 }
 
 void SandboxLayer::OnImGuiRender(Workbench::Timestep ts)
 {
-
+	static bool showDemoWindow = true;
+	ImGui::Begin("Metrics", &showDemoWindow);
+	ImGui::Text("Last frame time: %f ms (%f)", ts.GetMilliseconds());
+	ImGui::End();
 }
 
 void SandboxLayer::OnEvent(Workbench::Event& event)

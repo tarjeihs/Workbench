@@ -1,5 +1,5 @@
 #include "wbpch.h"
-#include "OpenGLVertexArray.h"
+#include "Platform/OpenGL/OpenGLVertexArray.h"
 
 #include "glad/glad.h"
 
@@ -24,6 +24,9 @@ namespace Workbench
 
 		case ShaderDataType::Bool:     return GL_BOOL;
 		}
+
+		WB_ENGINE_ASSERT(false, "Unknown specifier for ShaderDataType passed.");
+		return 0;
 	}
 
 	OpenGLVertexArray::OpenGLVertexArray()
