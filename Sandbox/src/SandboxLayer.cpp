@@ -1,12 +1,21 @@
 #include "SandboxLayer.h"
 
 // Temporary
-#include "glm/gtc/matrix_transform.hpp"
+#include <glm/gtc/matrix_transform.hpp>
 #include <imgui/imgui.h>
 
 SandboxLayer::SandboxLayer()
 	: Layer("Sandbox"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition({ 0.0f, 0.0f, 0.0f })
 {
+}
+
+void SandboxLayer::OnAttach()
+{
+	Workbench::FramebufferSpecification spec;
+	spec.Width = 1280;
+	spec.Height = 720;
+	m_Framebuffer = Workbench::Framebuffer::Create(spec);
+
 	uint32_t indices[3] = { 0, 1 ,2 };
 	float vertices[3 * 7] = {
 	   -0.5f, -0.5f, 0.0f, 1.0f, 0.8f, 0.5f, 0.5f,
@@ -39,10 +48,6 @@ SandboxLayer::SandboxLayer()
 	m_Shader = Workbench::Shader::Create("assets/shader.glsl");
 }
 
-void SandboxLayer::OnAttach()
-{
-}
-
 void SandboxLayer::OnDetach()
 {
 }
@@ -66,7 +71,7 @@ void SandboxLayer::OnUpdate(Workbench::Timestep ts)
 
 	Workbench::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0 });
 	Workbench::RenderCommand::Clear();
-
+	
 	m_Camera.SetCameraPosition(m_CameraPosition);
 	m_Camera.SetCameraRotation(m_CameraRotation);
 

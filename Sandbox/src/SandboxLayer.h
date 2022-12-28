@@ -15,14 +15,13 @@ public:
 	virtual void OnImGuiRender(Workbench::Timestep ts) override;
 	virtual void OnEvent(Workbench::Event& event) override;
 private:
-	Workbench::ShaderLibrary m_ShaderLibrary;
-	
 	std::shared_ptr<Workbench::Shader> m_Shader;
-
+	std::shared_ptr<Workbench::Framebuffer> m_Framebuffer;
 	std::shared_ptr<Workbench::VertexArray> m_VertexArray;
 	std::shared_ptr<Workbench::VertexBuffer> m_VertexBuffer;
 	std::shared_ptr<Workbench::IndexBuffer> m_IndexBuffer;
 
+	Workbench::ShaderLibrary m_ShaderLibrary;
 	Workbench::OrthographicCamera m_Camera;
 
 	glm::vec3 m_CameraPosition;

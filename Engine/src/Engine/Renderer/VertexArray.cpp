@@ -1,7 +1,7 @@
 #include "wbpch.h"
-#include "VertexArray.h"
+#include "Engine/Renderer/VertexArray.h"
 
-#include "Renderer.h"
+#include "Engine/Renderer/Renderer.h"
 #include "Platform/OpenGL/OpenGLVertexArray.h"
 
 namespace Workbench
@@ -12,5 +12,8 @@ namespace Workbench
 		{
 			case RendererAPI::APIType::OpenGL: return new OpenGLVertexArray();
 		}
+
+		WB_ENGINE_ASSERT(false, "APIType is out of scope.");
+		return nullptr;
 	}
 }

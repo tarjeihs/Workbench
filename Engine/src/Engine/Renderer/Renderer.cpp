@@ -19,9 +19,6 @@ namespace Workbench
 
 	void Renderer::Shutdown()
 	{
-		// Should this be here?
-		// 
-		//RenderCommand::Shutdown();
 	}
 
 	void Renderer::OnWindowResize(uint32_t width, uint32_t height)
@@ -41,6 +38,7 @@ namespace Workbench
 		std::dynamic_pointer_cast<OpenGLShader>(shader)->UploadUniformMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
 		std::dynamic_pointer_cast<OpenGLShader>(shader)->UploadUniformMat4("u_Transform", transform);
 
+		
 		RenderCommand::DrawIndexed(vertexArray);
 	}
 }

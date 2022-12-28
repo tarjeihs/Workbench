@@ -14,6 +14,7 @@
 #include "Engine/Renderer/Buffer.h"
 #include "Engine/Renderer/Texture.h"
 #include "Engine/Renderer/OrthographicCamera.h"
+#include "Engine/Renderer/Framebuffer.h"
 
 #include "Platform/OpenGL/OpenGLShader.h"
 
