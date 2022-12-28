@@ -24,7 +24,7 @@ namespace Workbench
 	};
 
 	// Interface and Create function to be defined per platform.
-	class WORKBENCH_API Window
+	class Window
 	{
 	public:
 		using EventCallbackFn = std::function<void(Event&)>;

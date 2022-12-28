@@ -11,7 +11,7 @@
 
 namespace Workbench
 {
-	class WORKBENCH_API Application
+	class Application
 	{
 	public:
 		Application();
@@ -27,17 +27,22 @@ namespace Workbench
 		void Exit(const ExitFlag& exitFlag);
 
 		inline Window& GetWindow() { return *m_Window; }
+		inline Timestep& GetTimestep() { return m_Timestep; }
 
 		static inline Application& Get() { return *s_Instance; }
 	private:
 		bool OnWindowClose(WindowCloseEvent& event);
+		bool OnWindowResize(WindowResizeEvent& event);
 	private:
 		std::unique_ptr<Window> m_Window;
 		LayerStack m_LayerStack;
 		ImGuiLayer* m_ImGuiLayer;
 
-		bool m_Running;
+		bool m_Minimized;
+
+		bool m_Running = true;
 		float m_LastFrameTime = 0.0f;
+		Timestep m_Timestep;
 
 		static Application* s_Instance;
 	};

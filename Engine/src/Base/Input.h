@@ -4,7 +4,7 @@
 
 namespace Workbench
 {
-	class WORKBENCH_API Input
+	class Input
 	{
 	public:
 		inline static bool KeyPressed(int keyCode) { return s_Instance->KeyPressedImpl(keyCode); }

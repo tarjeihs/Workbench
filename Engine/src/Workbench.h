@@ -8,7 +8,7 @@
 
 #include "Base/Renderer/Renderer.h"
 #include "Base/Renderer/RendererAPI.h"
-#include "base/Renderer/RenderCommand.h"
+#include "Base/Renderer/RenderCommand.h"
 #include "Base/Renderer/VertexArray.h"
 #include "Base/Renderer/Buffer.h"
 #include "Base/Renderer/Texture.h"
@@ -20,4 +20,4 @@
 #include "Platform/OpenGL/OpenGLShader.h"
 
 // Entrypoint
-#include "Base/Entrypoint.h"
+//#include "Base/Entrypoint.h"

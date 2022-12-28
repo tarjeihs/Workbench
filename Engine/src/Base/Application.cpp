@@ -1,6 +1,8 @@
 #include "wbpch.h"
 #include "Application.h"
 
+#include "Renderer/Renderer.h"
+
 #include <glfw/glfw3.h>
 
 namespace Workbench
@@ -13,7 +15,8 @@ namespace Workbench
 
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(WB_BIND_EVENT_FN(OnEvent));
-		m_Window->SetVSync(false);
+
+		Renderer::Init();
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
@@ -21,7 +24,7 @@ namespace Workbench
 
 	Application::~Application()
 	{
-
+		Renderer::Shutdown();
 	}
 
 	void Application::PushLayer(Layer* layer)
@@ -41,13 +44,13 @@ namespace Workbench
 		while (m_Running)
 		{
 			float time = (float)glfwGetTime();
-			Timestep ts = time - m_LastFrameTime;
+			m_Timestep = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 
-			for (Layer* layer : m_LayerStack) { layer->OnUpdate(ts); }
+			for (Layer* layer : m_LayerStack) { layer->OnUpdate(m_Timestep); }
 
 			m_ImGuiLayer->Begin();
-			for (Layer* layer : m_LayerStack) { layer->OnImGuiRender(ts); }
+			for (Layer* layer : m_LayerStack) { layer->OnImGuiRender(m_Timestep); }
 			m_ImGuiLayer->End();
 
 			m_Window->OnUpdate();
@@ -58,6 +61,7 @@ namespace Workbench
 	{
 		EventDispatcher dispatcher(event);
 		dispatcher.Dispatch<WindowCloseEvent>(WB_BIND_EVENT_FN(OnWindowClose));
+		dispatcher.Dispatch<WindowResizeEvent>(WB_BIND_EVENT_FN(OnWindowResize));
 
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
 		{
@@ -66,17 +70,29 @@ namespace Workbench
 		}
 	}
 
+	bool Application::OnWindowResize(WindowResizeEvent& event)
+	{
+		if (event.GetWidth() == 0 || event.GetHeight() == 0)
+		{
+			m_Minimized = true;
+			return false;
+		}
+
+		m_Minimized = false;
+		Renderer::OnWindowResize(event.GetWidth(), event.GetHeight());
+
+		return false;
+	}
+
 	bool Application::OnWindowClose(WindowCloseEvent& event)
 	{
 		m_Running = false;
 
-		return m_Running;
+		return true;
 	}
 
 	void Application::Exit(const ExitFlag& exitFlag)
 	{
 		WB_ENGINE_WARN("Application exited with flag: {0}", static_cast<int>(exitFlag));
-
-		m_Running = false;
 	}
 }

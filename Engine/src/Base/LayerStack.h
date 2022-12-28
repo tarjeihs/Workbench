@@ -5,7 +5,7 @@
 
 namespace Workbench
 {
-	class WORKBENCH_API LayerStack
+	class LayerStack
 	{
 	public:
 		LayerStack();

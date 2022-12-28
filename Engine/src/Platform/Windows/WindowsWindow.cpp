@@ -16,11 +16,6 @@ namespace Workbench
 		Shutdown();
 	}
 
-	Window* Window::Create(const WindowProperties& properties)
-	{
-		return new WindowsWindow(properties);
-	}
-
 	void WindowsWindow::Init(const WindowProperties& properties)
 	{
 		m_WindowData.Title = properties.Title;

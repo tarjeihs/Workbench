@@ -12,9 +12,25 @@ namespace Workbench
 		m_SceneData->ViewProjectionMatrix = orthographicCamera.GetProjectionViewMatrix();
 	}
 
+	void Renderer::Init()
+	{
+		RenderCommand::Init();
+	}
+
+	void Renderer::Shutdown()
+	{
+		// Should this be here?
+		// 
+		//RenderCommand::Shutdown();
+	}
+
+	void Renderer::OnWindowResize(uint32_t width, uint32_t height)
+	{
+		RenderCommand::SetViewport(0, 0, width, height);
+	}
+
 	void Renderer::EndScene()
 	{
-
 	}
 
 	void Renderer::Submit(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexArray>& vertexArray, const glm::mat4 transform)

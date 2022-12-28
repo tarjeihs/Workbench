@@ -56,7 +56,11 @@ namespace Workbench
     void ImGuiLayer::OnImGuiRender(Timestep ts)
     {
         static bool showDemoWindow = true;
-        ImGui::ShowDemoWindow(&showDemoWindow);
+        //ImGui::ShowDemoWindow(&showDemoWindow);
+
+        ImGui::Begin("Metrics", &showDemoWindow);
+        ImGui::Text("Last frame time: %f ms", Application::Get().GetTimestep().GetMilliseconds());
+        ImGui::End();
     }
 
     void ImGuiLayer::Begin()

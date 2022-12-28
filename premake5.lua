@@ -1,5 +1,5 @@
 workspace "Workbench"
-    architecture "x64"
+    architecture "x86_64"
     startproject "Sandbox"
     
     configurations 
@@ -22,10 +22,12 @@ workspace "Workbench"
     IncludeDir["ImGui"] = "Engine/vendor/imgui"
     IncludeDir["glm"] = "Engine/vendor/glm"
     
-    include "Engine/vendor/GLFW"
-    include "Engine/vendor/Glad"
-    include "Engine/vendor/imgui"
-
+    group "Vendor Solution"
+        include "Engine/vendor/GLFW"
+        include "Engine/vendor/Glad"
+        include "Engine/vendor/imgui"
+    group ""
+    
     project "Engine"
         location "Engine"
         kind "StaticLib"
@@ -58,15 +60,16 @@ workspace "Workbench"
         
         links 
         {
-            "Glad",
             "GLFW",
+            "Glad",
             "ImGui",
             "opengl32.lib"
         }
         
         defines 
         {
-            "_CRT_SECURE_NO_WARNINGS"
+            "_CRT_SECURE_NO_WARNINGS",
+            "GLFW_INCLUDE_NONE"
         }
         
         filter "system:windows"
@@ -76,8 +79,7 @@ workspace "Workbench"
             defines 
             {
                 "WB_PLATFORM_WINDOWS",
-                "WB_BUILD_DLL",
-                "GLFW_INCLUDE_NONE"
+                "WB_BUILD_DLL"
             }
 
         filter "configurations:Debug"
@@ -100,7 +102,7 @@ workspace "Workbench"
         kind "ConsoleApp"
         language "C++"
         cppdialect "C++17"
-        staticruntime "off"
+        staticruntime "on"
 
         targetdir ("bin/" .. outputdir .. "/%{prj.name}")
         objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -131,7 +133,7 @@ workspace "Workbench"
 
         filter "system:windows"
             cppdialect "C++17"
-            staticruntime "On"
+            staticruntime "on"
             systemversion "latest"
 
             defines 
