@@ -1,6 +1,6 @@
 workspace "Workbench"
     architecture "x86_64"
-    startproject "Sandbox"
+    startproject "Editor"
     
     configurations 
     { 
@@ -98,8 +98,8 @@ workspace "Workbench"
             runtime "Release"
             optimize "on"
 
-    project "Sandbox"
-        location "Sandbox"
+    project "Editor"
+        location "Editor"
         kind "ConsoleApp"
         language "C++"
         cppdialect "C++17"
@@ -138,7 +138,7 @@ workspace "Workbench"
             staticruntime "on"
             systemversion "latest"
 
-            defines 
+            defines
             {
                 "WB_PLATFORM_WINDOWS"
             }
