@@ -3,8 +3,6 @@
 
 #include "SandboxLayer.h"
 
-// https://github.com/TheCherno/Hazel
-
 class SandboxApplication : public Workbench::Application
 {
 public:

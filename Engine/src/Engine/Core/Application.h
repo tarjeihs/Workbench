@@ -7,7 +7,6 @@
 #include "Engine/Core/Timestep.h"
 
 #include "Engine/ImGui/ImGuiLayer.h"
-#include "Engine/Scene/Scene.h"
 
 namespace Workbench
 {
@@ -28,7 +27,6 @@ namespace Workbench
 		void OnEvent(Event& event);
 
 		inline Window& GetWindow() { return *m_Window; }
-		inline Scene& GetScene() { return *m_Scene; }
 
 		static inline Application& Get() { return *s_Instance; }
 	private:
@@ -36,7 +34,6 @@ namespace Workbench
 		bool OnWindowResize(WindowResizeEvent& event);
 	private:
 		std::unique_ptr<Window> m_Window;
-		std::shared_ptr<Scene> m_Scene;
 		LayerStack m_LayerStack;
 		ImGuiLayer* m_ImGuiLayer;
 
@@ -44,7 +41,6 @@ namespace Workbench
 
 		bool m_Running = true;
 		float m_LastFrameTime = 0.0f;
-		Timestep m_Timestep;
 
 		static Application* s_Instance;
 	};

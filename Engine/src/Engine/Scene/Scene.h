@@ -1,37 +1,13 @@
 #pragma once
 
 #include "Engine/Core/Timestep.h"
+#include "Engine/Core/UUID.h"
 
 #include <entt/entt.hpp>
 #include <glm/glm.hpp>
 
 namespace Workbench
 {
-	struct TagComponent
-	{
-		std::string Tag;
-
-		TagComponent() = default;
-		TagComponent(const TagComponent& other) = default;
-		TagComponent(const std::string& tag) 
-			: Tag(tag) { }
-	};
-
-	struct TransformComponent
-	{
-		glm::mat4 Transform;
-
-		TransformComponent() = default;
-		TransformComponent(const TransformComponent& other) = default;
-		TransformComponent(const glm::mat4& transform)
-			: Transform(transform) { }
-	};
-
-	struct NativeScriptComponent
-	{
-
-	};
-
 	class Entity;
 	
 	class Scene
@@ -40,11 +16,24 @@ namespace Workbench
 		Scene();
 		~Scene();
 
-		Entity CreateEntity(const std::string& name = std::string());
-
+		void OnEnable();
+		void OnDisable();
 		void OnUpdate(Timestep ts);
+
+		Entity CreateEntity(const std::string& name = std::string());
+		Entity CreateEntityWithUUID(UUID uuid, const std::string& name = std::string());
+
+		void DestroyEntity(Entity& entity);
+		void DestroyEntity(const UUID& uuid);
+
+		Entity FindEntityByName(std::string_view name);
+		Entity FindEntityByUUID(UUID uuid);
 	private:
 		entt::registry m_Registry;
+
+		std::unordered_map<UUID, entt::entity> m_EntityMap;
+
+		uint32_t m_EntityCount;
 
 		friend class Entity;
 	};

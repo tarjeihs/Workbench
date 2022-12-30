@@ -4,6 +4,25 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <imgui/imgui.h>
 
+class CameraController : public Workbench::ScriptableEntity
+{
+public:
+	void OnCreate()
+	{
+		WB_CLIENT_INFO("OnCreate()");
+	}
+
+	void OnDestroy()
+	{
+		WB_CLIENT_INFO("OnDestroy()");
+	}
+
+	void OnUpdate(Workbench::Timestep ts)
+	{
+		
+	}
+};
+
 SandboxLayer::SandboxLayer()
 	: Layer("Sandbox"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition({ 0.0f, 0.0f, 0.0f })
 {
@@ -16,8 +35,8 @@ void SandboxLayer::OnAttach()
 	spec.Height = 720;
 	m_Framebuffer = Workbench::Framebuffer::Create(spec);
 
-	m_Scene = std::make_shared<Scene>();
-	auto entity = m_Scene->CreateEntity();
+//	m_Scene = std::make_shared<Scene>();
+//	auto entity = m_Scene->CreateEntity();
 
 	uint32_t indices[3] = { 0, 1 ,2 };
 	float vertices[3 * 7] = {
@@ -48,11 +67,15 @@ void SandboxLayer::OnAttach()
 	m_VertexArray->AddVertexBuffer(m_VertexBuffer);
 	m_VertexArray->AddIndexBuffer(m_IndexBuffer);
 
+//	auto cameraEntity = m_Scene->CreateEntity("Camera Entity");
+//	cameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
+
 	m_Shader = Workbench::Shader::Create("assets/shader.glsl");
 }
 
 void SandboxLayer::OnDetach()
 {
+
 }
 
 void SandboxLayer::OnUpdate(Workbench::Timestep ts)
@@ -78,8 +101,6 @@ void SandboxLayer::OnUpdate(Workbench::Timestep ts)
 	
 	m_Camera.SetCameraPosition(m_CameraPosition);
 	m_Camera.SetCameraRotation(m_CameraRotation);
-
-	m_Scene->OnUpdate(ts);
 
 	Workbench::Renderer::BeginScene(m_Camera);
 	Workbench::Renderer::Submit(m_Shader, m_VertexArray);

@@ -44,13 +44,13 @@ namespace Workbench
 		while (m_Running)
 		{
 			float time = (float)glfwGetTime();
-			m_Timestep = time - m_LastFrameTime;
+			Timestep ts = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 
-			for (Layer* layer : m_LayerStack) { layer->OnUpdate(m_Timestep); }
+			for (Layer* layer : m_LayerStack) { layer->OnUpdate(ts); }
 
 			m_ImGuiLayer->Begin();
-			for (Layer* layer : m_LayerStack) { layer->OnImGuiRender(m_Timestep); }
+			for (Layer* layer : m_LayerStack) { layer->OnImGuiRender(ts); }
 			m_ImGuiLayer->End();
 
 			m_Window->OnUpdate();
