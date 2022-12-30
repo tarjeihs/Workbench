@@ -16,7 +16,9 @@
 #include "Engine/Renderer/OrthographicCamera.h"
 #include "Engine/Renderer/Framebuffer.h"
 
+#include "Engine/Scene/Scene.h"
+#include "Engine/Scene/Entity.h"
+
 #include "Platform/OpenGL/OpenGLShader.h"
 
-// Entrypoint
-//#include "Engine/Core/Entrypoint.h"
+using namespace Workbench;

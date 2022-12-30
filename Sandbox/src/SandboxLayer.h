@@ -21,6 +21,9 @@ private:
 	std::shared_ptr<Workbench::VertexBuffer> m_VertexBuffer;
 	std::shared_ptr<Workbench::IndexBuffer> m_IndexBuffer;
 
+	std::shared_ptr<Workbench::Scene> m_Scene;
+	entt::entity m_Entity;
+
 	Workbench::ShaderLibrary m_ShaderLibrary;
 	Workbench::OrthographicCamera m_Camera;
 

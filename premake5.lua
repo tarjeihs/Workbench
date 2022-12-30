@@ -21,6 +21,7 @@ workspace "Workbench"
     IncludeDir["Glad"] = "Engine/vendor/Glad/include"
     IncludeDir["ImGui"] = "Engine/vendor/imgui"
     IncludeDir["glm"] = "Engine/vendor/glm"
+    IncludeDir["entt"] = "Engine/vendor/entt/single_include"
     
     group "Vendor Solution"
         include "Engine/vendor/GLFW"
@@ -46,7 +47,6 @@ workspace "Workbench"
             "%{prj.name}/src/**.h", 
             "%{prj.name}/src/**.cpp" 
         }
-
         
         includedirs 
         {
@@ -55,7 +55,8 @@ workspace "Workbench"
             "%{IncludeDir.GLFW}",
             "%{IncludeDir.Glad}",
             "%{IncludeDir.ImGui}",
-            "%{IncludeDir.glm}"
+            "%{IncludeDir.glm}",
+            "%{IncludeDir.entt}"
         }
         
         links 
@@ -118,7 +119,8 @@ workspace "Workbench"
             "Engine/vendor/spdlog/include",
             "Engine/src",
             "Engine/vendor",
-            "%{IncludeDir.glm}"
+            "%{IncludeDir.glm}",
+            "%{IncludeDir.entt}"
         }
 
         links

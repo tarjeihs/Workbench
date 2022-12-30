@@ -4,9 +4,10 @@
 #include "Engine/Core/Window.h"
 
 #include "Engine/Core/LayerStack.h"
-#include "Engine/ImGui/ImGuiLayer.h"
-
 #include "Engine/Core/Timestep.h"
+
+#include "Engine/ImGui/ImGuiLayer.h"
+#include "Engine/Scene/Scene.h"
 
 namespace Workbench
 {
@@ -15,7 +16,7 @@ namespace Workbench
 	public:
 		enum ExitFlag : uint8_t { None = 0, Error = 1 };
 
-		Application();
+		Application(const std::string& name);
 		virtual ~Application();
 
 		void PushLayer(Layer* layer);
@@ -27,6 +28,7 @@ namespace Workbench
 		void OnEvent(Event& event);
 
 		inline Window& GetWindow() { return *m_Window; }
+		inline Scene& GetScene() { return *m_Scene; }
 
 		static inline Application& Get() { return *s_Instance; }
 	private:
@@ -34,6 +36,7 @@ namespace Workbench
 		bool OnWindowResize(WindowResizeEvent& event);
 	private:
 		std::unique_ptr<Window> m_Window;
+		std::shared_ptr<Scene> m_Scene;
 		LayerStack m_LayerStack;
 		ImGuiLayer* m_ImGuiLayer;
 

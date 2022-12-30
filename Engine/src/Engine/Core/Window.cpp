@@ -7,8 +7,8 @@
 
 namespace Workbench
 {
-	Window* Window::Create(const WindowProperties& properties)
+	std::unique_ptr<Window> Window::Create(const WindowProperties& properties)
 	{
-		return new WindowsWindow(properties);
+		return std::make_unique<WindowsWindow>(properties);
 	}
 }

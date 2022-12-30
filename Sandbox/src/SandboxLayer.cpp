@@ -16,6 +16,9 @@ void SandboxLayer::OnAttach()
 	spec.Height = 720;
 	m_Framebuffer = Workbench::Framebuffer::Create(spec);
 
+	m_Scene = std::make_shared<Scene>();
+	auto entity = m_Scene->CreateEntity();
+
 	uint32_t indices[3] = { 0, 1 ,2 };
 	float vertices[3 * 7] = {
 	   -0.5f, -0.5f, 0.0f, 1.0f, 0.8f, 0.5f, 0.5f,
@@ -69,22 +72,26 @@ void SandboxLayer::OnUpdate(Workbench::Timestep ts)
 	else if (Workbench::Input::KeyPressed(WB_KEY_D))
 		m_CameraRotation += m_CameraRotationSpeed * ts;
 
+	//m_Framebuffer->Bind();
 	Workbench::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0 });
 	Workbench::RenderCommand::Clear();
 	
 	m_Camera.SetCameraPosition(m_CameraPosition);
 	m_Camera.SetCameraRotation(m_CameraRotation);
 
+	m_Scene->OnUpdate(ts);
+
 	Workbench::Renderer::BeginScene(m_Camera);
 	Workbench::Renderer::Submit(m_Shader, m_VertexArray);
 	Workbench::Renderer::EndScene();
+	//m_Framebuffer->Unbind();
 }
 
 void SandboxLayer::OnImGuiRender(Workbench::Timestep ts)
 {
 	static bool showDemoWindow = true;
 	ImGui::Begin("Metrics", &showDemoWindow);
-	ImGui::Text("Last frame time: %f ms (%f)", ts.GetMilliseconds());
+	ImGui::Text("Last frame time: %f ms (%f)", ts.GetMilliseconds(), 1000.0f / ts.GetMilliseconds());
 	ImGui::End();
 }
 

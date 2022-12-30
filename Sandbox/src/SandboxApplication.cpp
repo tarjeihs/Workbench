@@ -9,6 +9,7 @@ class SandboxApplication : public Workbench::Application
 {
 public:
 	SandboxApplication()
+		: Application("Sandbox")
 	{
 		PushLayer(new SandboxLayer());
 	}

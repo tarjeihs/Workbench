@@ -42,6 +42,6 @@ namespace Workbench
 
 		virtual void* GetNativeWindow() const = 0;
 
-		static Window* Create(const WindowProperties& properties = WindowProperties());
+		static std::unique_ptr<Window> Create(const WindowProperties& properties = WindowProperties());
 	};
 }

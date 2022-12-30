@@ -9,11 +9,11 @@ namespace Workbench
 {
 	Application* Application::s_Instance = nullptr;
 
-	Application::Application()
+	Application::Application(const std::string& name)
 	{
 		s_Instance = this;
 
-		m_Window = std::unique_ptr<Window>(Window::Create());
+		m_Window = Window::Create();
 		m_Window->SetEventCallback(WB_BIND_EVENT_FN(OnEvent));
 
 		Renderer::Init();
