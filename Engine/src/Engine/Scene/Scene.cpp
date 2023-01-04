@@ -5,6 +5,8 @@
 #include "Engine/Scene/ScriptableEntity.h"
 #include "Engine/Scene/Object.h"
 
+#include "Engine/Renderer/Renderer2D.h"
+
 namespace Workbench
 {
 	Scene::Scene()
@@ -42,12 +44,24 @@ namespace Workbench
 		});
 	}
 
-	void Scene::OnUpdate(Timestep ts)
+	void Scene::OnUpdateRuntime(Timestep ts)
 	{
 		m_Registry.view<NativeScriptComponent>().each([=](auto entity, auto& nsc)
 		{
 			nsc.Script->OnUpdate(ts);
 		});
+	}
+
+	void Scene::OnUpdateEditor(Timestep ts, EditorCamera& camera)
+	{
+		Renderer2D::BeginScene(camera);
+		Renderer2D::DrawQuad({ 1.0f, 1.0f, 1.0f }, { 1.0f, 1.0f }, { 0.5, 0.3, 0.4, 1.0f });
+		Renderer2D::EndScene();
+	}
+
+	void Scene::OnViewportResize(uint32_t width, uint32_t height)
+	{
+		
 	}
 
 	Entity Scene::CreateEntity(const std::string& name)
@@ -64,8 +78,6 @@ namespace Workbench
 		
 		m_EntityMap[uuid] = entity;
 
-		m_EntityCount++;
-		
 		return entity;
 	}
 
@@ -78,8 +90,6 @@ namespace Workbench
 	{
 		m_Registry.destroy(m_EntityMap[uuid]);
 		m_EntityMap.erase(uuid);
-
-		m_EntityCount--;
 	}
 
 	Entity Scene::FindEntityByName(std::string_view name)

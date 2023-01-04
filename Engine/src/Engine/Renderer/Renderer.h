@@ -28,6 +28,6 @@ namespace Workbench
 			glm::mat4 ViewProjectionMatrix;
 		};
 
-		static SceneData* m_SceneData;
+		static std::unique_ptr<SceneData> m_SceneData;
 	};
 }

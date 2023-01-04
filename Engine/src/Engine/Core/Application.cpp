@@ -9,11 +9,16 @@ namespace Workbench
 {
 	Application* Application::s_Instance = nullptr;
 
-	Application::Application(const std::string& name)
+	Application::Application(const std::string& name, uint32_t width, uint32_t height)
 	{
 		s_Instance = this;
 
-		m_Window = Window::Create();
+		WindowProperties properties;
+		properties.Title = name;
+		properties.Width = width;
+		properties.Height = height;
+		
+		m_Window = Window::Create(properties);
 		m_Window->SetEventCallback(WB_BIND_EVENT_FN(OnEvent));
 
 		Renderer::Init();
@@ -46,7 +51,7 @@ namespace Workbench
 			float time = (float)glfwGetTime();
 			Timestep ts = time - m_LastFrameTime;
 			m_LastFrameTime = time;
-
+			
 			for (Layer* layer : m_LayerStack) { layer->OnUpdate(ts); }
 
 			m_ImGuiLayer->Begin();
@@ -81,7 +86,7 @@ namespace Workbench
 		m_Minimized = false;
 
 		Renderer::OnWindowResize(event.GetWidth(), event.GetHeight());
-
+		
 		return false;
 	}
 

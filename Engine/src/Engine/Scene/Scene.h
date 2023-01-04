@@ -2,6 +2,7 @@
 
 #include "Engine/Core/Timestep.h"
 #include "Engine/Core/UUID.h"
+#include "Engine/Renderer/EditorCamera.h"
 
 #include <entt/entt.hpp>
 #include <glm/glm.hpp>
@@ -18,7 +19,10 @@ namespace Workbench
 
 		void OnEnable();
 		void OnDisable();
-		void OnUpdate(Timestep ts);
+		void OnUpdateRuntime(Timestep ts);
+		void OnUpdateEditor(Timestep ts, EditorCamera& camera);
+		void OnUpdateSimulation(Timestep ts) {} // TODO <----
+		void OnViewportResize(uint32_t width, uint32_t height);
 
 		Entity CreateEntity(const std::string& name = std::string());
 		Entity CreateEntityWithUUID(UUID uuid, const std::string& name = std::string());

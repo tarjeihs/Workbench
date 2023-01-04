@@ -2,6 +2,8 @@
 
 #include "Engine/Scene/Scene.h"
 
+#include "Engine/Renderer/OrthographicCamera.h"
+
 #include <entt/entt.hpp>
 
 namespace Workbench
@@ -38,6 +40,18 @@ namespace Workbench
 		TransformComponent(const TransformComponent& other) = default;
 		TransformComponent(const glm::mat4& transform)
 			: Transform(transform)
+		{
+		}
+	};
+	
+	struct CameraComponent
+	{
+		OrthographicCamera Camera;
+
+		CameraComponent() = default;
+		CameraComponent(const CameraComponent& other) = default;
+		CameraComponent(const OrthographicCamera& camera)
+			: Camera(camera)
 		{
 		}
 	};

@@ -6,11 +6,11 @@
 
 namespace Workbench
 {
-	VertexArray* VertexArray::Create()
+	std::shared_ptr<VertexArray> VertexArray::Create()
 	{
 		switch (RendererAPI::GetAPIType())
 		{
-			case RendererAPI::APIType::OpenGL: return new OpenGLVertexArray();
+			case RendererAPI::APIType::OpenGL: return std::make_unique<OpenGLVertexArray>();
 		}
 
 		WB_ENGINE_ASSERT(false, "APIType is out of scope.");

@@ -8,7 +8,7 @@ namespace Workbench
 	{
 	public:
 		inline static bool KeyPressed(int keyCode) { return s_Instance->KeyPressedImpl(keyCode); }
-		inline static bool MouseButtonPressed(int keyCode) { return s_Instance->MouseButtonPressed(keyCode); }
+		inline static bool MouseButtonPressed(int keyCode) { return s_Instance->MouseButtonPressedImpl(keyCode); }
 		
 		inline static float GetMouseX() { return s_Instance->GetMouseXImpl(); }
 		inline static float GetMouseY() { return s_Instance->GetMouseYImpl(); }

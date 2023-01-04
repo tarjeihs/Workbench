@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Engine/Renderer/Object.h"
+
 #include <string>
 #include <unordered_map>
 
@@ -7,7 +9,7 @@
 
 namespace Workbench
 {
-	class Shader
+	class Shader : public Object
 	{
 	public:
 		virtual ~Shader() = default;
@@ -16,7 +18,7 @@ namespace Workbench
 		virtual void Unbind() const = 0;
 
 		virtual void SetInt(const std::string& name, int value) = 0;
-		virtual void SetIntArray(const std::string& name, int* values, uint32_t count) = 0;
+		virtual void SetIntArray(const std::string& name, int* value, uint32_t count) = 0;
 		virtual void SetFloat(const std::string& name, float value) = 0;
 		virtual void SetFloat3(const std::string& name, const glm::vec3& value) = 0;
 		virtual void SetFloat4(const std::string& name, const glm::vec4& value) = 0;
@@ -26,7 +28,7 @@ namespace Workbench
 
 		static std::shared_ptr<Shader> Create(const std::string& sourcePath);
 	private:
-		uint32_t m_RendererID;
+		uint32_t m_RendererID = 0;
 	};
 
 	class ShaderLibrary

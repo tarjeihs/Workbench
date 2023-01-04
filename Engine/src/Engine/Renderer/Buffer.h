@@ -120,7 +120,7 @@ namespace Workbench
 		virtual const BufferLayout& GetLayout() const = 0;
 		virtual void SetLayout(const BufferLayout& layout) = 0;
 	public:
-		static VertexBuffer* Create(float* vertices, uint32_t size);
+		static std::shared_ptr<VertexBuffer> Create(float* vertices, uint32_t size);
 	};
 
 	class IndexBuffer
@@ -133,6 +133,6 @@ namespace Workbench
 
 		virtual uint32_t GetCount() const = 0;
 	public:
-		static IndexBuffer* Create(uint32_t* indices, uint32_t count);
+		static std::shared_ptr<IndexBuffer> Create(uint32_t* indices, uint32_t count);
 	};
 }

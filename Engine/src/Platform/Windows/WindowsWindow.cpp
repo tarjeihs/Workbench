@@ -22,7 +22,7 @@ namespace Workbench
 		m_WindowData.Width = properties.Width;
 		m_WindowData.Height = properties.Height;
 
-		WB_ENGINE_INFO("Creating window {0} ({1}, {2})", properties.Title, properties.Width, properties.Height);
+		WB_ENGINE_INFO("Creating window and context for {0} ({1}, {2})", properties.Title, properties.Width, properties.Height);
 
 		if (!s_GLFWInitialized)
 		{

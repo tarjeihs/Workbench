@@ -74,9 +74,9 @@ namespace Workbench
 		UploadUniformInt(name.c_str(), value);
 	}
 
-	void OpenGLShader::SetIntArray(const std::string& name, int* values, uint32_t count)
+	void OpenGLShader::SetIntArray(const std::string& name, int* value, uint32_t count)
 	{
-		UploadUniformIntArray(name, values, count);
+		UploadUniformIntArray(name, value, count);
 	}
 
 	void OpenGLShader::SetFloat(const std::string& name, float value)
