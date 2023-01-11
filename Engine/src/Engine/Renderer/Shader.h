@@ -1,7 +1,5 @@
 #pragma once
 
-#include "Engine/Renderer/Object.h"
-
 #include <string>
 #include <unordered_map>
 
@@ -9,7 +7,7 @@
 
 namespace Workbench
 {
-	class Shader : public Object
+	class Shader
 	{
 	public:
 		virtual ~Shader() = default;

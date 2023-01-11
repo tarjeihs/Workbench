@@ -1,12 +1,16 @@
 #pragma once
 
+#include "Engine/Renderer/ProjectionCamera.h"
+
 #include <glm/glm.hpp>
 
 namespace Workbench
 {
-	class OrthographicCamera
+	// TODO: Add Camera implementation
+	class OrthographicCamera : public ProjectionCamera
 	{
 	public:
+		OrthographicCamera() = default;
 		OrthographicCamera(float left, float right, float bottom, float top, float zNear = -1.0f, float zFar = 1.0f);
 
 		void SetProjection(float left, float right, float bottom, float top);

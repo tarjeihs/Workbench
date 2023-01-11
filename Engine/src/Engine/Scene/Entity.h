@@ -1,10 +1,12 @@
 #pragma once
 
 #include "Engine/Scene/Scene.h"
-
-#include "Engine/Renderer/OrthographicCamera.h"
+#include "Engine/Renderer/ProjectionCamera.h"
 
 #include <entt/entt.hpp>
+
+#define GLM_ENABLE_EXPERIMENTAL
+#include <glm/gtx/quaternion.hpp>
 
 namespace Workbench
 {
@@ -34,25 +36,52 @@ namespace Workbench
 
 	struct TransformComponent
 	{
-		glm::mat4 Transform;
+		glm::vec3 Translation = glm::vec3(0.0f);
+		glm::vec3 Rotation = glm::vec3(0.0f);
+		glm::vec3 Scale = glm::vec3(1.0f);
 
 		TransformComponent() = default;
 		TransformComponent(const TransformComponent& other) = default;
-		TransformComponent(const glm::mat4& transform)
-			: Transform(transform)
+
+		glm::mat4 GetTransform() const
+		{
+			glm::mat4 rotation = glm::toMat4(glm::quat(Rotation));
+
+			return glm::translate(glm::mat4(1.0f), Translation)
+				* rotation
+				* glm::scale(glm::mat4(1.0f), Scale);
+		}
+	};
+
+	struct SpriteRendererComponent
+	{
+		glm::vec4 Color { 1.0f, 1.0f, 1.0f, 1.0f };
+
+		SpriteRendererComponent() = default;
+		SpriteRendererComponent(const SpriteRendererComponent&) = default;
+		SpriteRendererComponent(const glm::vec4& color)
+			: Color(color)
 		{
 		}
 	};
 	
 	struct CameraComponent
 	{
-		OrthographicCamera Camera;
+		ProjectionCamera Camera;
+		bool Primary = true;
+		bool FixedAspectRatio = false;
 
 		CameraComponent() = default;
 		CameraComponent(const CameraComponent& other) = default;
-		CameraComponent(const OrthographicCamera& camera)
+		CameraComponent(const ProjectionCamera& camera)
 			: Camera(camera)
 		{
+		}
+
+		template<typename T, typename ... Args>
+		void Bind(Args&& ... args)
+		{
+			Camera = T(std::forward<Args>(args)...);
 		}
 	};
 	
@@ -81,28 +110,28 @@ namespace Workbench
 		Entity(const Entity& other) = default;
 
 		template<typename T, typename... Args>
-		T& AddComponent(Args&&... args)
+		inline T& AddComponent(Args&&... args) const
 		{
 			WB_ENGINE_ASSERT(!HasComponent<T>(), "Component is attached.");
 			return m_Scene->m_Registry.emplace<T>(m_EntityHandle, std::forward<Args>(args)...);
 		}
 
 		template<typename T>
-		T& GetComponent()
+		inline T& GetComponent() const
 		{
 			WB_ENGINE_ASSERT(HasComponent<T>(), "Component is not attached.");
 			return m_Scene->m_Registry.get<T>(m_EntityHandle);
 		}
 		
 		template<typename T>
-		void RemoveComponent()
+		inline void RemoveComponent() const
 		{
 			WB_ENGINE_ASSERT(HasComponent<T>(), "Component is not attached.");
 			m_Scene->m_Registry.remove<T>(m_EntityHandle);
 		}
 
 		template<typename T>
-		bool HasComponent() const
+		inline bool HasComponent() const
 		{
 			return m_Scene->m_Registry.try_get<T>(m_EntityHandle);
 		}

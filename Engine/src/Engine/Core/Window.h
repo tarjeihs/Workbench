@@ -6,6 +6,7 @@
 #include "Engine/Event/ApplicationEvent.h"
 #include "Engine/Event/KeyEvent.h"
 #include "Engine/Event/MouseEvent.h"
+#include "Engine/Event/JoystickEvent.h"
 
 #include <sstream>
 

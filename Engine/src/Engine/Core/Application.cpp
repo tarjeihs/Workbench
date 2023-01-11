@@ -68,9 +68,9 @@ namespace Workbench
 		dispatcher.Dispatch<WindowCloseEvent>(WB_BIND_EVENT_FN(OnWindowClose));
 		dispatcher.Dispatch<WindowResizeEvent>(WB_BIND_EVENT_FN(OnWindowResize));
 
-		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
+		for (auto iterator = m_LayerStack.end(); iterator != m_LayerStack.begin();)
 		{
-			(*--it)->OnEvent(event);
+			(*--iterator)->OnEvent(event);
 			if (event.IsHandled) { break; }
 		}
 	}

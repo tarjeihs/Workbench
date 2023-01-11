@@ -6,11 +6,11 @@
 
 namespace Workbench
 {
-	std::shared_ptr<Shader> Shader::Create(const std::string& sourcePath)
+	Ref<Shader> Shader::Create(const std::string& sourcePath)
 	{
 		switch (RendererAPI::GetAPIType())
 		{
-			case RendererAPI::APIType::OpenGL: return std::make_shared<OpenGLShader>(sourcePath);
+			case RendererAPI::APIType::OpenGL: return CreateRef<OpenGLShader>(sourcePath);
 		}
 
 		return nullptr;
@@ -27,21 +27,21 @@ namespace Workbench
 		Add(name, shader);
 	}
 
-	std::shared_ptr<Shader> ShaderLibrary::Load(const std::string& sourcePath)
+	Ref<Shader> ShaderLibrary::Load(const std::string& sourcePath)
 	{
 		auto shader = Shader::Create(sourcePath);
 		Add(shader);
 		return shader;
 	}
 
-	std::shared_ptr<Shader> ShaderLibrary::Load(const std::string& name, const std::string& sourcePath)
+	Ref<Shader> ShaderLibrary::Load(const std::string& name, const std::string& sourcePath)
 	{
 		auto shader = Shader::Create(sourcePath);
 		Add(shader);
 		return shader;
 	}
 
-	std::shared_ptr<Shader> ShaderLibrary::Get(const std::string& name)
+	Ref<Shader> ShaderLibrary::Get(const std::string& name)
 	{
 		return m_Shaders[name];
 	}

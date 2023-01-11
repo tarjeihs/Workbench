@@ -1,12 +1,12 @@
 #pragma once
 
-#include "Engine/Renderer/Camera.h"
+#include "Engine/Renderer/ProjectionCamera.h"
 
 #include "Engine/Event/MouseEvent.h"
 
 namespace Workbench
 {
-	class EditorCamera : public Camera
+	class EditorCamera : public ProjectionCamera
 	{
 	public:
 		EditorCamera() = default;
@@ -21,7 +21,7 @@ namespace Workbench
 		inline void SetViewport(float width, float height) { m_ViewportWidth = width; m_ViewportHeight = height; }
 
 		inline const glm::mat4& GetViewMatrix() const { return m_ViewMatrix; }
-		inline const glm::mat4 GetViewProjection() const { return m_Projection * m_ViewMatrix; }
+		inline const glm::mat4 GetViewProjection() const { return GetProjection() * m_ViewMatrix; }
 	private:
 		void UpdateProjection();
 		void UpdateView();

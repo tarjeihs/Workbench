@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Engine/Renderer/RenderCommand.h"
-#include "Engine/Renderer/OrthographicCamera.h"
 #include "Engine/Renderer/Shader.h"
+#include "Engine/Renderer/ProjectionCamera.h"
 
 namespace Workbench
 {
@@ -14,7 +14,7 @@ namespace Workbench
 
 		static void OnWindowResize(uint32_t, uint32_t height);
 
-		static void BeginScene(OrthographicCamera& orthographicCamera);
+		static void BeginScene(ProjectionCamera& projectionCamera);
 		static void EndScene();
 
 		static void Submit(const std::shared_ptr<Shader>& shader, 

@@ -13,7 +13,7 @@ namespace Workbench
 {
 	EditorCamera::EditorCamera(float fov, float aspectRatio, float nearClip, float farClip)
 		: m_FOV(fov), m_AspectRatio(aspectRatio), m_NearClip(nearClip), m_FarClip(farClip),
-		 Camera(glm::perspective(glm::radians(fov), aspectRatio, nearClip, farClip))
+		 ProjectionCamera(glm::perspective(glm::radians(fov), aspectRatio, nearClip, farClip), ProjectionType::Perspective)
 	{
 		UpdateView();
 	}
@@ -21,7 +21,8 @@ namespace Workbench
 	void EditorCamera::UpdateProjection()
 	{
 		m_AspectRatio = m_ViewportWidth / m_ViewportHeight;
-		m_Projection = glm::perspective(glm::radians(m_FOV), m_AspectRatio, m_NearClip, m_FarClip);
+		
+		SetProjection(glm::perspective(glm::radians(m_FOV), m_AspectRatio, m_NearClip, m_FarClip));
 	}
 	
 	void EditorCamera::UpdateView()
@@ -48,7 +49,6 @@ namespace Workbench
 			else if (Input::MouseButtonPressed(WB_MOUSE_BUTTON_RIGHT))
 				MouseZoom(delta.y);
 		}
-
 
 		UpdateView();
 	}

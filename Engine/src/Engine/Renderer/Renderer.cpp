@@ -20,9 +20,9 @@ namespace Workbench
 		Renderer2D::Shutdown();
 	}
 
-	void Renderer::BeginScene(OrthographicCamera& orthographicCamera)
+	void Renderer::BeginScene(ProjectionCamera& projectionCamera)
 	{
-		m_SceneData->ViewProjectionMatrix = orthographicCamera.GetViewProjectionMatrix();
+		//m_SceneData->ViewProjectionMatrix = projectionCamera.GetProjection();
 	}
 
 	void Renderer::EndScene()

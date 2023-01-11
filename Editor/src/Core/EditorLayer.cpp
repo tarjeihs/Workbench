@@ -13,8 +13,15 @@ namespace Workbench
 
 	void EditorLayer::OnAttach()
 	{
-		m_EditorScene = std::make_unique<Scene>();
-		m_EditorCamera = EditorCamera(30.0f, 1.778f, 0.1f, 1000.0f);
+		m_Scene = CreateRef<Scene>();
+
+		m_CameraEntity = m_Scene->CreateEntity("Camera");
+		m_CameraEntity.AddComponent<CameraComponent>().Bind<PerspectiveCamera>();
+
+		m_SquareEntity = m_Scene->CreateEntity("Box");
+		m_SquareEntity.AddComponent<SpriteRendererComponent>();
+
+		Application::Get().GetWindow().SetVSync(false);
 	}
 
 	void EditorLayer::OnDetach()
@@ -23,12 +30,21 @@ namespace Workbench
 
 	void EditorLayer::OnUpdate(Timestep ts)
 	{
-		m_EditorCamera.OnUpdate(ts);
-
 		RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
 		RenderCommand::Clear();
 
-		m_EditorScene->OnUpdateEditor(ts, m_EditorCamera);
+		m_Scene->UpdateNativeScriptComponent(ts);
+
+		switch (m_SceneUpdateState)
+		{
+			case SceneUpdateState::UpdateInterlude: 
+			{ 
+				m_EditorCamera.OnUpdate(ts); 		
+				m_Scene->DrawQuad(m_EditorCamera); 
+				break;
+			}
+			WB_CLIENT_ASSERT(false, "Variable of SceneUpdateState is out of scope");
+		}
 	}
 
 	void EditorLayer::OnImGuiRender(Timestep ts)
@@ -36,6 +52,9 @@ namespace Workbench
 		static bool showDemoWindow = true;
 		ImGui::Begin("Metrics", &showDemoWindow);
 		ImGui::Text("Last frame time: %f ms (%f)", ts.GetMilliseconds(), 1000.0f / ts.GetMilliseconds());
+		ImGui::Text("Camera Entity Position X: %f", m_CameraEntity.GetComponent<TransformComponent>().Translation[0]);
+		ImGui::Text("Camera Entity Position Y: %f", m_CameraEntity.GetComponent<TransformComponent>().Translation[1]);
+		ImGui::Text("Camera Entity Position Z: %f", m_CameraEntity.GetComponent<TransformComponent>().Translation[2]);
 		ImGui::End();
 	}
 
@@ -43,25 +62,12 @@ namespace Workbench
 	{
 		EventDispatcher dispatcher(event);
 		dispatcher.Dispatch<WindowResizeEvent>(WB_BIND_EVENT_FN(OnWindowResize));
-		m_EditorCamera.OnEvent(event);
 	}
-
-	// Clean up mess here
 
 	bool EditorLayer::OnWindowResize(WindowResizeEvent& event)
 	{
-		m_EditorCamera.SetViewport(event.GetWidth(), event.GetHeight());
-		m_EditorScene->OnViewportResize(event.GetWidth(), event.GetHeight());
+		m_Scene->OnViewportResize(event.GetWidth(), event.GetHeight());
+
 		return false;
-	}
-
-	void EditorLayer::OnScenePlay()
-	{
-		m_SceneState = SceneState::Play;
-	}
-
-	void EditorLayer::OnSceneStop()
-	{
-		m_SceneState = SceneState::Edit;
 	}
 }

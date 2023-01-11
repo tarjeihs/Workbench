@@ -1,8 +1,6 @@
 #include "wbpch.h"
 #include "Platform/OpenGL/OpenGLShader.h"
 
-#include "Engine/Core/Timer.h"
-
 #include <fstream>
 
 #include <glad/glad.h>
@@ -191,8 +189,6 @@ namespace Workbench
 
 	void OpenGLShader::Compile(std::unordered_map<GLenum, std::string>& sources)
 	{
-		Timer timer;
-
 		GLuint program = glCreateProgram();
 
 		std::array<GLuint, 2> glShaderId;
@@ -275,7 +271,5 @@ namespace Workbench
 		// Always detach shaders after a successful link.
 		for (auto id : glShaderId)
 			glDetachShader(program, id);
-
-		WB_ENGINE_INFO("Shader compilation time: {0} ms", timer.ElapsedMilliseconds());
 	}
 }

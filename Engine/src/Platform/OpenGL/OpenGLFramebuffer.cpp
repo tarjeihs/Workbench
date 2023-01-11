@@ -82,7 +82,7 @@ namespace Workbench
 		// Attach the texture to the framebuffer as the depth and stencil attachment
 		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, m_DepthAttachment, 0);
 
-		WB_ENGINE_ASSERT(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE, "FBO is not complete");
+		WB_ENGINE_ASSERT(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE, "FBO is incomplete");
 
 		// Unbind the framebuffer
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);

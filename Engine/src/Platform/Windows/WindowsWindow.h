@@ -21,27 +21,29 @@ namespace Workbench
 		inline unsigned int GetHeight() const override { return m_WindowData.Height; }
 
 		inline void SetEventCallback(const EventCallbackFn& callback) override { m_WindowData.EventCallback = callback; }
+		
 		void SetVSync(bool enabled) override;
 		bool IsVSync() const override;
 
 		inline virtual void* GetNativeWindow() const { return m_Window; }
 	private:
-		virtual void Init(const WindowProperties& properties);
-		virtual void Shutdown();
+		void Init(const WindowProperties& properties);
+		void Shutdown();
 	private:
 		struct WindowData
 		{
 			std::string Title;
 			uint32_t Width = 0;
 			uint32_t Height = 0;
-			bool VSync = 0;
+			bool VSync = 1;
 
 			EventCallbackFn EventCallback;
 		};
 	private:
 		GLFWwindow* m_Window;
-		WindowData m_WindowData;
 		GraphicsContext* m_Context;
+		
+		WindowData m_WindowData;
 	};
 }
 

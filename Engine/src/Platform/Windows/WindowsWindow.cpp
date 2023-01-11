@@ -1,6 +1,8 @@
 #include "wbpch.h"
 #include "Platform/Windows/WindowsWindow.h"
 
+#include "Engine/Core/KeyCode.h"
+
 namespace Workbench
 {
 	static bool s_GLFWInitialized = false;
@@ -32,14 +34,14 @@ namespace Workbench
 			s_GLFWInitialized = true;
 		}
 
-		m_Window = glfwCreateWindow((int)properties.Width, (int)properties.Height, m_WindowData.Title.c_str(), nullptr, nullptr);
+		m_Window = glfwCreateWindow((int)properties.Width, (int)properties.Height, properties.Title.c_str(), nullptr, nullptr);
 		
+		// TODO: switch between different API
 		m_Context = new OpenGLContext(m_Window);
 		m_Context->Init();
 
 		glfwSetWindowUserPointer(m_Window, &m_WindowData);
 
-		// GLFW callbacks
 		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height)
 		{
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
@@ -98,17 +100,27 @@ namespace Workbench
 				case GLFW_RELEASE: { MouseButtonReleasedEvent event(keyCode); data.EventCallback(event); break; }
 			}
 		});
-	}
 
-	void WindowsWindow::Shutdown()
-	{
-		glfwDestroyWindow(m_Window);
+		glfwSetJoystickCallback([](int joystickId, int action)
+		{
+			WindowData& data = *(WindowData*)glfwGetJoystickUserPointer(joystickId);
+			switch (action)
+			{
+				case GLFW_CONNECTED: { WB_ENGINE_INFO("Joystick device connected"); break; }
+				case GLFW_DISCONNECTED: { WB_ENGINE_INFO("Joystick device disconnected."); break; }
+			}
+		});
 	}
 
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
 		m_Context->SwapBuffers();
+	}
+
+	void WindowsWindow::Shutdown()
+	{
+		glfwDestroyWindow(m_Window);
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)
