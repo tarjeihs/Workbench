@@ -1,8 +1,6 @@
 #include "wbpch.h"
 #include "Platform/OpenGL/OpenGLShader.h"
 
-#include "Engine/Core/Timer.h"
-
 #include <fstream>
 
 #include <glad/glad.h>
@@ -74,9 +72,9 @@ namespace Workbench
 		UploadUniformInt(name.c_str(), value);
 	}
 
-	void OpenGLShader::SetIntArray(const std::string& name, int* values, uint32_t count)
+	void OpenGLShader::SetIntArray(const std::string& name, int* value, uint32_t count)
 	{
-		UploadUniformIntArray(name, values, count);
+		UploadUniformIntArray(name, value, count);
 	}
 
 	void OpenGLShader::SetFloat(const std::string& name, float value)
@@ -191,8 +189,6 @@ namespace Workbench
 
 	void OpenGLShader::Compile(std::unordered_map<GLenum, std::string>& sources)
 	{
-		Timer timer;
-
 		GLuint program = glCreateProgram();
 
 		std::array<GLuint, 2> glShaderId;
@@ -275,7 +271,5 @@ namespace Workbench
 		// Always detach shaders after a successful link.
 		for (auto id : glShaderId)
 			glDetachShader(program, id);
-
-		WB_ENGINE_INFO("Shader compilation time: {0} ms", timer.ElapsedMilliseconds());
 	}
 }

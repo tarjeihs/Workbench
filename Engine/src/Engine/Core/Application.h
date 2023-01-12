@@ -8,6 +8,8 @@
 
 #include "Engine/ImGui/ImGuiLayer.h"
 
+#include "Engine/Scene/Scene.h"
+
 namespace Workbench
 {
 	class Application
@@ -15,7 +17,7 @@ namespace Workbench
 	public:
 		enum ExitFlag : uint8_t { None = 0, Error = 1 };
 
-		Application(const std::string& name);
+		Application(const std::string& name, uint32_t width, uint32_t height);
 		virtual ~Application();
 
 		void PushLayer(Layer* layer);

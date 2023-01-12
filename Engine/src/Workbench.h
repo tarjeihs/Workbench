@@ -8,11 +8,11 @@
 #include "Engine/ImGui/ImGuiLayer.h"
 
 #include "Engine/Renderer/Renderer.h"
+#include "Engine/Renderer/Renderer2D.h"
 #include "Engine/Renderer/RendererAPI.h"
 #include "Engine/Renderer/RenderCommand.h"
 #include "Engine/Renderer/VertexArray.h"
 #include "Engine/Renderer/Buffer.h"
-#include "Engine/Renderer/Texture.h"
 #include "Engine/Renderer/OrthographicCamera.h"
 #include "Engine/Renderer/Framebuffer.h"
 

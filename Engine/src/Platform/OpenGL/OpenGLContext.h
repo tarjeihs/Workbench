@@ -2,9 +2,10 @@
 
 #include "Engine/Renderer/GraphicsContext.h"
 
-class GLFWwindow;
+struct GLFWwindow;
 
 namespace Workbench
+
 {
 	class OpenGLContext : public GraphicsContext
 	{

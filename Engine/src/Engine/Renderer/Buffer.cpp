@@ -6,22 +6,33 @@
 
 namespace Workbench
 {
-	VertexBuffer* VertexBuffer::Create(float* vertices, uint32_t size)
+	std::shared_ptr<VertexBuffer> VertexBuffer::Create(uint32_t size)
 	{
 		switch (RendererAPI::GetAPIType())
 		{
-			case RendererAPI::APIType::OpenGL: return new OpenGLVertexBuffer(vertices, size);
+		case RendererAPI::APIType::OpenGL: return std::make_shared<OpenGLVertexBuffer>(size);
+		}
+
+		WB_ENGINE_ASSERT(false, "Failed to specify current RendererAPI.");
+		return nullptr;
+	}
+
+	std::shared_ptr<VertexBuffer> VertexBuffer::Create(float* vertices, uint32_t size)
+	{
+		switch (RendererAPI::GetAPIType())
+		{
+			case RendererAPI::APIType::OpenGL: return std::make_shared<OpenGLVertexBuffer>(vertices, size);
 		}
 
 		WB_ENGINE_ASSERT(false, "Failed to specify current RendererAPI.");
 		return nullptr;
 	}	
 	
-	IndexBuffer* IndexBuffer::Create(uint32_t* indices, uint32_t size)
+	std::shared_ptr<IndexBuffer> IndexBuffer::Create(uint32_t* indices, uint32_t size)
 	{
 		switch (RendererAPI::GetAPIType())
 		{
-			case RendererAPI::APIType::OpenGL: return new OpenGLIndexBuffer(indices, size);
+			case RendererAPI::APIType::OpenGL: return std::make_shared<OpenGLIndexBuffer>(indices, size);
 		}
 
 		WB_ENGINE_ASSERT(false, "Failed to specify current RendererAPI.");

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Engine/Core/Base.h"
-//#include "Engine/Core/Log.h"
 
 #include <functional>
 
@@ -13,17 +12,23 @@ namespace Workbench
 		WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved,
 		ApplicationTick, ApplicationUpdate, ApplicationRender,
 		KeyPressed, KeyReleased, KeyType,
-		MouseButtonPressed, MouseButtonReleased, MouseMove, MouseScroll
+		MouseButtonPressed, MouseButtonReleased, MouseMove, MouseScroll,
+		JoystickConnected, JoystickDisconnected,
+		JoystickButtonPressed, JoystickButtonReleased, JoystickMoveL, JoystickMoveR
 	};
 
 	enum EventCategory
 	{
 		None = 0,
-		EventCategoryApplication   = 1 << 0,
-		EventCategoryInput         = 1 << 1,
-		EventCategoryKeyboard      = 1 << 2,
-		EventCategoryMouse         = 1 << 3,
-		EventCategoryMouseButton   = 1 << 4
+		EventCategoryApplication			= 1 << 0,
+		EventCategoryInput					= 1 << 1,
+		EventCategoryKeyboard				= 1 << 2,
+		EventCategoryMouse					= 1 << 3,
+		EventCategoryMouseButton			= 1 << 4,
+		EventCategoryJoystickConnected		= 1 << 5,
+		EventCategoryJoystickDisconnected	= 1 << 6,
+		EventCategoryJoystickMove			= 1 << 7,
+		EventCategoryJoystickButton			= 1 << 8
 	};
 
 #define EVENT_CLASS_TYPE(type) static EventType GetStaticType() { return EventType::##type; }\

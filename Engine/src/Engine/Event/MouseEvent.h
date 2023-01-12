@@ -12,9 +12,7 @@ namespace Workbench
 		EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
 	protected:
 		MouseButtonEvent(int keyCode)
-			: m_KeyCode(keyCode)
-		{
-		}
+			: m_KeyCode(keyCode) {}
 
 		int m_KeyCode;
 	};
@@ -22,10 +20,8 @@ namespace Workbench
 	class MouseButtonPressedEvent : public MouseButtonEvent
 	{
 	public:
-		MouseButtonPressedEvent(int mouseKeyCode)
-			: MouseButtonEvent(mouseKeyCode)
-		{
-		}
+		MouseButtonPressedEvent(int keyCode)
+			: MouseButtonEvent(keyCode) {}
 
 		EVENT_CLASS_TYPE(MouseButtonPressed)
 	};
@@ -33,10 +29,8 @@ namespace Workbench
 	class MouseButtonReleasedEvent : public MouseButtonEvent
 	{
 	public:
-		MouseButtonReleasedEvent(int mouseKeyCode)
-			: MouseButtonEvent(mouseKeyCode)
-		{
-		}
+		MouseButtonReleasedEvent(int keyCode)
+			: MouseButtonEvent(keyCode) {}
 
 		EVENT_CLASS_TYPE(MouseButtonReleased)
 	};

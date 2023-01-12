@@ -1,6 +1,6 @@
 workspace "Workbench"
     architecture "x86_64"
-    startproject "Sandbox"
+    startproject "Editor"
     
     configurations 
     { 
@@ -17,15 +17,15 @@ workspace "Workbench"
     outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
     IncludeDir = {}
-    IncludeDir["GLFW"] = "Engine/vendor/GLFW/include"
-    IncludeDir["Glad"] = "Engine/vendor/Glad/include"
-    IncludeDir["ImGui"] = "Engine/vendor/imgui"
+    IncludeDir["glfw"] = "Engine/vendor/glfw/include"
+    IncludeDir["glad"] = "Engine/vendor/glad/include"
+    IncludeDir["imgui"] = "Engine/vendor/imgui"
     IncludeDir["glm"] = "Engine/vendor/glm"
     IncludeDir["entt"] = "Engine/vendor/entt/single_include"
     
-    group "Vendor Solution"
-        include "Engine/vendor/GLFW"
-        include "Engine/vendor/Glad"
+    group "Vendor Directory"
+        include "Engine/vendor/glfw"
+        include "Engine/vendor/glad"
         include "Engine/vendor/imgui"
     group ""
     
@@ -52,18 +52,18 @@ workspace "Workbench"
         {
             "%{prj.name}/src",
             "%{prj.name}/vendor/spdlog/include",
-            "%{IncludeDir.GLFW}",
-            "%{IncludeDir.Glad}",
-            "%{IncludeDir.ImGui}",
+            "%{IncludeDir.glfw}",
+            "%{IncludeDir.glad}",
+            "%{IncludeDir.imgui}",
             "%{IncludeDir.glm}",
             "%{IncludeDir.entt}"
         }
         
         links 
         {
-            "GLFW",
-            "Glad",
-            "ImGui",
+            "glfw",
+            "glad",
+            "imgui",
             "opengl32.lib"
         }
         
@@ -98,8 +98,8 @@ workspace "Workbench"
             runtime "Release"
             optimize "on"
 
-    project "Sandbox"
-        location "Sandbox"
+    project "Editor"
+        location "Editor"
         kind "ConsoleApp"
         language "C++"
         cppdialect "C++17"
@@ -138,7 +138,7 @@ workspace "Workbench"
             staticruntime "on"
             systemversion "latest"
 
-            defines 
+            defines
             {
                 "WB_PLATFORM_WINDOWS"
             }

@@ -4,18 +4,18 @@
 
 namespace Workbench
 {
-	class Timer
+	class Stopwatch
 	{
 	public:
-		Timer()
+		Stopwatch()
 		{
 			Reset();
 		}
 
-		Timer(Timer&) = delete;
-		Timer(Timer&&) = delete;
+		Stopwatch(Stopwatch&) = delete;
+		Stopwatch(Stopwatch&&) = delete;
 
-		inline void Timer::Reset()
+		inline void Reset()
 		{
 			m_Start = std::chrono::high_resolution_clock::now();
 		}
